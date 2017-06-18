@@ -1,4 +1,4 @@
-var config = {
+const config = {
   entry: __dirname + '/src/app.js',
   output: {
     path: __dirname + '/build',
