@@ -5,4 +5,9 @@ const query = new dbQueryHelper
 
 locationsRouter.get('/', query.findAllLocations)
 
+locationsRouter.post('/', query.addLocation)
+
+locationsRouter.get('/:id', query.findLocationById)
+
+
 module.exports = locationsRouter
