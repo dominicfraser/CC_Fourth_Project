@@ -12,15 +12,28 @@ class Leaderboard extends React.Component {
     super(props)
     this.state = {
       fixedIndex: 1,
+      allPlayers: [],
       locations: []
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
     this.handleFixedTabChange = this.handleFixedTabChange.bind(this)
 
     this.findAllLocations()
+    this.findAllPlayers()
   }
 
   render(){
+    const playerListItems = this.state.allPlayers.map((player, index) => {
+      return ( 
+          <ListItem
+          key={index}
+          avatar='./public/img/ic_account_circle_white_24px.svg'
+          caption={player.p_name}
+          // legend="legend"
+          rightIcon='star'
+        />
+      )
+    })
 
     return (
         <div>
@@ -36,24 +49,7 @@ class Leaderboard extends React.Component {
             <Tab label='W/L'>
               <List selectable ripple>
                   <ListSubHeader caption='Win/Loss Ratio' />
-                  <ListItem
-                    avatar='https://dl.dropboxusercontent.com/u/2247264/assets/m.jpg'
-                    caption='Dr. Manhattan'
-                    legend="Jonathan 'Jon' Osterman"
-                    rightIcon='star'
-                  />
-                  <ListItem
-                    avatar='https://dl.dropboxusercontent.com/u/2247264/assets/o.jpg'
-                    caption='Ozymandias'
-                    legend='Adrian Veidt'
-                    rightIcon='star'
-                  />
-                  <ListItem
-                    avatar='https://dl.dropboxusercontent.com/u/2247264/assets/r.jpg'
-                    caption='Rorschach'
-                    legend='Walter Joseph Kovacs'
-                    rightIcon='star'
-                  />
+                  {playerListItems}
                   <ListDivider />
                   <ListSubHeader caption='Biggest Win Streak' />
                   <ListItem caption='Person' leftIcon='send' />
@@ -78,6 +74,12 @@ class Leaderboard extends React.Component {
     this.apiCommunicatorHelper.allLocations((locations) => {
       this.setState({ locations: locations })
   console.log('locations in leaderboard', locations)
+    })
+  }
+
+  findAllPlayers(){
+    this.apiCommunicatorHelper.allPlayers((players) => {
+      this.setState({ allPlayers: players })
     })
   }
 
