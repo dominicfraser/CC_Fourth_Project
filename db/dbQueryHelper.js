@@ -205,6 +205,51 @@ updatePlayer(req, res, next){
         .then(games => res.json(games))
         .catch(next)
   }
+  findGameById(req, res, next){
+    const sql = "SELECT * FROM games WHERE id = $1"
+
+    const id = req.params.id;
+
+    db.query(sql, [id])
+        .then(game => res.json(game[0]))
+        .catch(next)
+  }
+  addGame(req, res, next){
+    const sql1 = "INSERT INTO games (p1_id, p2_id, p1_score, p2_score, location_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+
+    const p1_id = req.body.p1_id
+    const p2_id = req.body.p2_id
+    const p1_score = req.body.p1_score
+    const p2_score = req.body.p2_score
+    const location_id = req.body.location_id
+
+    db.query(sql1, [p1_id, p2_id, p1_score, p2_score, location_id])
+        .then(game => res.json(game[0]))
+        .catch(next)
+  }
+  deleteGame(req, res, next){
+    const sql = "DELETE FROM games WHERE id = $1 RETURNING *"
+
+    const id = req.params.id;
+
+    db.query(sql, [id])
+        .then(game => res.json(game))
+        .catch(next)
+  }
+  updateGame(req, res, next){
+    const sql = "UPDATE games SET (p1_id, p2_id, p1_score, p2_score, location_id) = ($1, $2, $3, $4, $5) WHERE id = $6 RETURNING *"
+
+    const p1_id = req.body.p1_id
+    const p2_id = req.body.p2_id
+    const p1_score = req.body.p1_score
+    const p2_score = req.body.p2_score
+    const location_id = req.body.location_id
+    const id = req.params.id;
+
+    db.query(sql, [p1_id, p2_id, p1_score, p2_score, location_id, id])
+        .then(game => res.json(game))
+        .catch(next)
+  }
 
 
 }
