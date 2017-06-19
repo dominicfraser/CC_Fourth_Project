@@ -1,6 +1,6 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import AppBar from 'react-toolbox/lib/app_bar';
+import AppBar from 'react-toolbox/lib/app_bar'
 
 
 

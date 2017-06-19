@@ -1,5 +1,5 @@
 // const path = require('path');
-const webpack = require('webpack');
+const webpack = require('webpack')
 
 const config = {
   entry: __dirname + '/src/app.js',
