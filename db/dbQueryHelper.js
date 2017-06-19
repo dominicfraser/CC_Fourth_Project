@@ -142,6 +142,60 @@ updateGroup(req, res, next){
       .catch(next)
 }
 
+//PLAYERS
+findAllPlayers(req, res, next){
+  const sql = "SELECT * FROM players ORDER BY p_name ASC"
+
+  db.query(sql, [])
+      .then(players => res.json(players))
+      .catch(next)
+}
+findPlayerById(req, res, next){
+  const sql = "SELECT * FROM players WHERE id = $1"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(player => res.json(player[0]))
+      .catch(next)
+}
+addPlayer(req, res, next){
+  const sql1 = "INSERT INTO players (p_name, rating, picture, primary_org_id, primary_group_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+
+  const p_name = req.body.p_name
+  const rating = req.body.rating
+  const picture = req.body.picture
+  const primary_org_id = req.body.primary_org_id
+  const primary_group_id = req.body.primary_group_id
+
+  db.query(sql1, [p_name, rating, picture, primary_org_id, primary_group_id])
+      .then(player => res.json(player[0]))
+      .catch(next)
+}
+deletePlayer(req, res, next){
+  const sql = "DELETE FROM players WHERE id = $1 RETURNING *"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(player => res.json(player))
+      .catch(next)
+}
+updatePlayer(req, res, next){
+  const sql = "UPDATE players SET (p_name, rating, picture, primary_org_id, primary_group_id) = ($1, $2, $3, $4, $5) WHERE id = $6 RETURNING *"
+
+  const p_name = req.body.p_name
+  const rating = req.body.rating
+  const picture = req.body.picture
+  const primary_org_id = req.body.primary_org_id
+  const primary_group_id = req.body.primary_group_id
+  const id = req.params.id;
+
+  db.query(sql, [p_name, rating, picture, primary_org_id, primary_group_id, id])
+      .then(player => res.json(player))
+      .catch(next)
+}
+
 
 //GAMES
   findAllGames(req, res, next){

@@ -109,6 +109,17 @@ RETURN NEW;
 END;
 $d$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION add_g_o_joins()
+RETURNS TRIGGER AS $d$
+BEGIN
+
+INSERT INTO pl_org_join (p_id, org_id) VALUES (NEW.id, NEW.primary_org_id);
+INSERT INTO pl_group_join (p_id, group_id) VALUES (NEW.id, NEW.primary_group_id);
+
+RETURN NULL;
+END;
+$d$ LANGUAGE plpgsql;
+
 
 CREATE TRIGGER determine_winner 
 BEFORE INSERT ON games
@@ -119,3 +130,8 @@ CREATE TRIGGER add_primaries
 BEFORE INSERT ON games
 FOR EACH ROW
 EXECUTE PROCEDURE find_primaries();
+
+CREATE TRIGGER add_player_joins
+AFTER INSERT ON players
+FOR EACH ROW
+EXECUTE PROCEDURE add_g_o_joins();

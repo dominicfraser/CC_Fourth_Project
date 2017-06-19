@@ -7,6 +7,8 @@ router.use('/api/organisations', require('./organisations_controller'))
 
 router.use('/api/groups', require('./groups_controller'))
 
+router.use('/api/players', require('./players_controller'))
+
 router.use('/api/games', require('./games_controller'))
 
 
