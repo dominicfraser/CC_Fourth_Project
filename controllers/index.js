@@ -11,5 +11,7 @@ router.use('/api/players', require('./players_controller'))
 
 router.use('/api/games', require('./games_controller'))
 
+router.use('/api/joins', require('./joins_controller'))
+
 
 module.exports = router

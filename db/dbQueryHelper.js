@@ -251,6 +251,42 @@ updatePlayer(req, res, next){
         .catch(next)
   }
 
+//PL_GROUP_JOIN
+findAllPlayersGroups(req, res, next){
+  const sql = "SELECT * FROM pl_group_join ORDER BY id ASC"
+
+  db.query(sql, [])
+      .then(joins => res.json(joins))
+      .catch(next)
+}
+findPlayerGroups(req, res, next){
+  const sql = "SELECT * FROM pl_group_join WHERE id = $1"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(games => res.json(games))
+      .catch(next)
+}
+
+//PL_ORG_JOIN
+findAllPlayersOrganisations(req, res, next){
+  const sql = "SELECT * FROM pl_org_join ORDER BY id ASC"
+
+  db.query(sql, [])
+      .then(joins => res.json(joins))
+      .catch(next)
+}
+findPlayerOrganisations(req, res, next){
+  const sql = "SELECT * FROM pl_org_join WHERE id = $1"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(games => res.json(games))
+      .catch(next)
+}
+
 
 }
 
