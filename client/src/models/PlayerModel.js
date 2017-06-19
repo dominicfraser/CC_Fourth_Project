@@ -9,4 +9,5 @@ class PlayerModel {
   }
 }
 
-export default PlayerModel
+//so specs can read it
+module.exports = PlayerModel
