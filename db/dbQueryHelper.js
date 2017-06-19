@@ -162,18 +162,19 @@ findPlayerById(req, res, next){
 findPlayerStats(req, res, next){
   const sqlWins = "SELECT COUNT(id) AS wins FROM games WHERE p1_score>p2_score AND p1_id=$1 OR p2_score>p1_score AND p2_id=$1"
   const sqlLosses = "SELECT COUNT(id) AS losses FROM games WHERE p1_score<p2_score AND p1_id=$1 OR p2_score<p1_score AND p2_id=$1"
+  const sqlNoGames = "SELECT COUNT(id) AS nogames FROM games WHERE p1_id=$1 OR p2_id=$1"
 
   const id = req.params.id;
-  const stats = {}
 
-  const promises = [db.query(sqlWins, [id]), db.query(sqlLosses, [id])]
+  const promises = [db.query(sqlWins, [id]), db.query(sqlLosses, [id]), db.query(sqlNoGames, [id])]
 
   Promise.all(promises)
     .then(statsArray => {
       let wins = parseInt(statsArray[0][0].wins)
       let losses = parseInt(statsArray[1][0].losses)
+      let noGames = parseInt(statsArray[2][0].nogames)
 
-      res.json({wins: wins, losses: losses, ratio: `${wins}:${losses}`})
+      res.json({wins: wins, losses: losses, noGames: noGames})
     })
     .catch(next)
 
