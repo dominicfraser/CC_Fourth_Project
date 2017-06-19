@@ -94,6 +94,55 @@ updateOrganisation(req, res, next){
       .catch(next)
 }
 
+//GROUPS
+findAllGroups(req, res, next){
+  const sql = "SELECT * FROM groups ORDER BY g_name ASC"
+
+  db.query(sql, [])
+      .then(groups => res.json(groups))
+      .catch(next)
+}
+findGroupById(req, res, next){
+  const sql = "SELECT * FROM groups WHERE id = $1"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(group => res.json(group[0]))
+      .catch(next)
+}
+addGroup(req, res, next){
+  const sql = "INSERT INTO groups (g_name, org_id) VALUES ($1, $2) RETURNING *"
+
+  const g_name = req.body.g_name
+  const org_id = req.body.org_id
+
+  db.query(sql, [g_name, org_id])
+      .then(group => res.json(group[0]))
+      .catch(next)    
+}
+deleteGroup(req, res, next){
+  const sql = "DELETE FROM groups WHERE id = $1 RETURNING *"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(group => res.json(group))
+      .catch(next)
+}
+updateGroup(req, res, next){
+  const sql = "UPDATE groups SET (g_name, org_id) = ($1, $2) WHERE id = $3 RETURNING *"
+
+  const g_name = req.body.g_name;
+  const org_id = req.body.org_id;
+  const id = req.params.id;
+
+  db.query(sql, [g_name, org_id, id])
+      .then(group => res.json(group))
+      .catch(next)
+}
+
+
 //GAMES
   findAllGames(req, res, next){
     const sql = "SELECT * FROM games ORDER BY tstamp ASC"
