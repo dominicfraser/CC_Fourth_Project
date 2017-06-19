@@ -1,5 +1,7 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
+import AppBar from 'react-toolbox/lib/app_bar';
+
 
 
 class Leaderboard extends React.Component {
@@ -16,7 +18,10 @@ class Leaderboard extends React.Component {
   render(){
 
     return (
-        <p> test </p>
+        <div>
+          <AppBar title='React Toolbox'> </AppBar>
+          <p> test </p>
+        </div>
       )
 
   }
