@@ -19,7 +19,7 @@ class AddGame extends React.Component {
         <div>
           <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
             <Navigation type='horizontal'>
-              <Link href='/' icon='person' />
+              <Link href='/#/' icon='person' />
               <Link href='/#/addGame' active icon='add' />
             </Navigation>
           </AppBar>

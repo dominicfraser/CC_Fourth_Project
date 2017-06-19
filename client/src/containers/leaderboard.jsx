@@ -4,6 +4,7 @@ import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
 import Link from 'react-toolbox/lib/Link'
 import {Tab, Tabs} from 'react-toolbox'
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
 
 
 class Leaderboard extends React.Component {
@@ -31,10 +32,34 @@ class Leaderboard extends React.Component {
           </AppBar>
           <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
             <Tab label='Wins' disabled><small>First Content</small></Tab>
+
             <Tab label='W/L'>
-              <small>Second Content</small>
-              <p> test </p>
+              <List selectable ripple>
+                  <ListSubHeader caption='Win/Loss Ratio' />
+                  <ListItem
+                    avatar='https://dl.dropboxusercontent.com/u/2247264/assets/m.jpg'
+                    caption='Dr. Manhattan'
+                    legend="Jonathan 'Jon' Osterman"
+                    rightIcon='star'
+                  />
+                  <ListItem
+                    avatar='https://dl.dropboxusercontent.com/u/2247264/assets/o.jpg'
+                    caption='Ozymandias'
+                    legend='Adrian Veidt'
+                    rightIcon='star'
+                  />
+                  <ListItem
+                    avatar='https://dl.dropboxusercontent.com/u/2247264/assets/r.jpg'
+                    caption='Rorschach'
+                    legend='Walter Joseph Kovacs'
+                    rightIcon='star'
+                  />
+                  <ListDivider />
+                  <ListSubHeader caption='Biggest Win Streak' />
+                  <ListItem caption='Person' leftIcon='send' />
+                </List>
             </Tab>
+
             <Tab label='Rating' disabled><small>Third Content</small></Tab>
           </Tabs>
         </div>
