@@ -48,6 +48,52 @@ class dbQueryHelper {
         .catch(next)
   }
 
+//ORGANISATIONS
+findAllOrganisations(req, res, next){
+  const sql = "SELECT * FROM organisations ORDER BY o_name ASC"
+
+  db.query(sql, [])
+      .then(organisations => res.json(organisations))
+      .catch(next)
+}
+findOrganisationById(req, res, next){
+  const sql = "SELECT * FROM organisations WHERE id = $1"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(organisation => res.json(organisation[0]))
+      .catch(next)
+}
+addOrganisation(req, res, next){
+  const sql = "INSERT INTO organisations (o_name) VALUES ($1) RETURNING *"
+
+  const o_name = req.body.o_name
+
+  db.query(sql, [o_name])
+      .then(organisation => res.json(organisation[0]))
+      .catch(next)    
+}
+deleteOrganisation(req, res, next){
+  const sql = "DELETE FROM organisations WHERE id = $1 RETURNING *"
+
+  const id = req.params.id;
+
+  db.query(sql, [id])
+      .then(organisation => res.json(organisation))
+      .catch(next)
+}
+updateOrganisation(req, res, next){
+  const sql = "UPDATE organisations SET (o_name) = ($1) WHERE id = $2 RETURNING *"
+
+  const o_name = req.body.o_name;
+  const id = req.params.id;
+
+  db.query(sql, [o_name, id])
+      .then(organisation => res.json(organisation))
+      .catch(next)
+}
+
 //GAMES
   findAllGames(req, res, next){
     const sql = "SELECT * FROM games ORDER BY tstamp ASC"
