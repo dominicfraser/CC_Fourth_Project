@@ -19,7 +19,7 @@ class Leaderboard extends React.Component {
 
     return (
         <div>
-          <AppBar title='React Toolbox'> </AppBar>
+          <AppBar title='Table Tennis Tracker'> </AppBar>
           <p> test </p>
         </div>
       )
