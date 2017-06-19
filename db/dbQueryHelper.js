@@ -159,6 +159,25 @@ findPlayerById(req, res, next){
       .then(player => res.json(player[0]))
       .catch(next)
 }
+findPlayerStats(req, res, next){
+  const sqlWins = "SELECT COUNT(id) AS wins FROM games WHERE p1_score>p2_score AND p1_id=$1 OR p2_score>p1_score AND p2_id=$1"
+  const sqlLosses = "SELECT COUNT(id) AS losses FROM games WHERE p1_score<p2_score AND p1_id=$1 OR p2_score<p1_score AND p2_id=$1"
+
+  const id = req.params.id;
+  const stats = {}
+
+  const promises = [db.query(sqlWins, [id]), db.query(sqlLosses, [id])]
+
+  Promise.all(promises)
+    .then(statsArray => {
+      let wins = parseInt(statsArray[0][0].wins)
+      let losses = parseInt(statsArray[1][0].losses)
+
+      res.json({wins: wins, losses: losses, ratio: `${wins}:${losses}`})
+    })
+    .catch(next)
+
+}
 addPlayer(req, res, next){
   const sql1 = "INSERT INTO players (p_name, rating, picture, primary_org_id, primary_group_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
 

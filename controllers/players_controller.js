@@ -12,6 +12,8 @@ playersRouter.delete('/:id', query.deletePlayer)
 
 playersRouter.get('/:id', query.findPlayerById)
 
+playersRouter.get('/:id/stats', query.findPlayerStats)
+
 playersRouter.patch('/:id', query.updatePlayer)
 
 
