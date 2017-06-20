@@ -5,6 +5,7 @@ import Navigation from 'react-toolbox/lib/navigation'
 import Link from 'react-toolbox/lib/Link'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
+import Button from 'react-toolbox/lib/button'
 
 class AddGame extends React.Component {
   constructor(props){
@@ -80,6 +81,8 @@ class AddGame extends React.Component {
           value={this.state.selectedLocation.l_name}
           showSuggestionsWhenValueIsSet={true}
         />
+
+        <Button label='Add Game' href='/#/' raised primary />
         
       </div>
     )
