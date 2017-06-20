@@ -13,12 +13,10 @@ class Leaderboard extends React.Component {
     this.state = {
       fixedIndex: 1,
       allPlayers: [],
-      locations: []
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
     this.handleFixedTabChange = this.handleFixedTabChange.bind(this)
 
-    this.findAllLocations()
     this.findAllPlayers()
   }
 
@@ -54,39 +52,39 @@ class Leaderboard extends React.Component {
     })
 
     return (
-        <div>
-          <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
-            <Navigation type='horizontal'>
-              <Link href='/#/' icon='person' />
-              <Link href='/#/addGame' icon='add' />
-            </Navigation>
-          </AppBar>
-          <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
-            <Tab label='Wins'>
-              <List selectable ripple>
-                <ListSubHeader caption='Total Wins' />
-                {playerListItemsAmountWins}
+      <div>
+        <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
+          <Navigation type='horizontal'>
+            <Link href='/#/' icon='person' />
+            <Link href='/#/addGame' icon='add' />
+          </Navigation>
+        </AppBar>
+        <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
+          <Tab label='Wins'>
+            <List selectable ripple>
+              <ListSubHeader caption='Total Wins' />
+              {playerListItemsAmountWins}
+              <ListDivider />
+
+            </List>
+          </Tab>
+
+          <Tab label='W/L'>
+            <List selectable ripple>
+                <ListSubHeader caption='Win/Loss Ratio' />
+                {playerListItemsWinLoss}
                 <ListDivider />
-
+                <ListSubHeader caption='Biggest Win Streak' />
+                <ListItem caption='Person' leftIcon='send' />
               </List>
-            </Tab>
+          </Tab>
 
-            <Tab label='W/L'>
-              <List selectable ripple>
-                  <ListSubHeader caption='Win/Loss Ratio' />
-                  {playerListItemsWinLoss}
-                  <ListDivider />
-                  <ListSubHeader caption='Biggest Win Streak' />
-                  <ListItem caption='Person' leftIcon='send' />
-                </List>
-            </Tab>
-
-            <Tab label='Rating' disabled>
-              <small>Third Content</small>
-            </Tab>
-          </Tabs>
-        </div>
-      )
+          <Tab label='Rating' disabled>
+            <small>Third Content</small>
+          </Tab>
+        </Tabs>
+      </div>
+    )
 
   }
 
@@ -95,12 +93,6 @@ class Leaderboard extends React.Component {
 
   handleFixedTabChange(index){
     this.setState({fixedIndex: index});
-  }
-
-  findAllLocations(){
-    this.apiCommunicatorHelper.allLocations((locations) => {
-      this.setState({ locations: locations })
-    })
   }
 
   findAllPlayers(){
@@ -121,7 +113,6 @@ class Leaderboard extends React.Component {
     return 0;
   }
 
-
 }
 
-export default Leaderboard 
+export default Leaderboard
