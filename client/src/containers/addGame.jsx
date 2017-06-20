@@ -66,9 +66,9 @@ class AddGame extends React.Component {
           suggestionMatch="anywhere"
         />
 
-        <Input type='text' label='Player 1 Score' name='p1-score' value={this.state.player1score} onChange={this.handleP1ScoreChange} maxLength={2} required/>
+        <Input type='number' label='Player 1 Score' name='p1-score' value={this.state.player1score} onChange={this.handleP1ScoreChange} required/>
 
-        <Input type='text' label='Player 2 Score' name='p2-score' value={this.state.player2score} onChange={this.handleP2ScoreChange} maxLength={2} required/>
+        <Input type='number' label='Player 2 Score' name='p2-score' value={this.state.player2score} onChange={this.handleP2ScoreChange} required/>
 
         <Autocomplete
           direction="auto"
