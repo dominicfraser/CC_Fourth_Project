@@ -23,16 +23,18 @@ class Leaderboard extends React.Component {
   }
 
   render(){
-    const playerListItems = this.state.allPlayers.map((player, index) => {
+    const playerListItemsSorted = this.state.allPlayers.sort(this.sortByWinRatioPercentage)
+
+    const playerListItemsMap = playerListItemsSorted.map((player, index) => {
       return ( 
           <ListItem
           key={index}
           avatar='./public/img/ic_account_circle_white_24px.svg'
           caption={player.p_name}
-          leftActions={[<p key={0}>{player.win_ratio_ratio()}</p>]}
-          rightActions={[<p key={0}>right</p>]}
+          // leftActions={[<p key={0}>{player.win_ratio_ratio()}</p>]}
+          rightActions={[<p key={0}>W/L Ratio: {player.win_ratio_ratio()}</p>]}
           // legend={player.id}
-          rightIcon='star'
+          // rightIcon='star'
         />
       )
     })
@@ -51,7 +53,7 @@ class Leaderboard extends React.Component {
             <Tab label='W/L'>
               <List selectable ripple>
                   <ListSubHeader caption='Win/Loss Ratio' />
-                  {playerListItems}
+                  {playerListItemsMap}
                   <ListDivider />
                   <ListSubHeader caption='Biggest Win Streak' />
                   <ListItem caption='Person' leftIcon='send' />
@@ -82,6 +84,12 @@ class Leaderboard extends React.Component {
     this.apiCommunicatorHelper.allPlayersWithStats((players) => {
       this.setState({ allPlayers: players })
     })
+  }
+
+  sortByWinRatioPercentage(a, b){
+    if (a.win_ratio_percentage() > b.win_ratio_percentage()) return -1;
+    if (a.win_ratio_percentage() < b.win_ratio_percentage()) return 1;
+    return 0;
   }
 
 
