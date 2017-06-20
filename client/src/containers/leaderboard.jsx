@@ -23,9 +23,23 @@ class Leaderboard extends React.Component {
   }
 
   render(){
-    const playerListItemsSorted = this.state.allPlayers.sort(this.sortByWinRatioPercentage)
+    const playerListItemsSortedAmountWins = this.state.allPlayers.sort(this.sortByAmountWins)
+    const playerListItemsAmountWins = playerListItemsSortedAmountWins.map((player, index) => {
+      return ( 
+          <ListItem
+          key={index}
+          avatar='./public/img/ic_account_circle_white_24px.svg'
+          caption={player.p_name}
+          // leftActions={[<p key={0}>{player.win_ratio_ratio()}</p>]}
+          rightActions={[<p key={0}>Total Wins: {player.wins}</p>]}
+          // legend={player.id}
+          // rightIcon='star'
+        />
+      )
+    })
 
-    const playerListItemsMap = playerListItemsSorted.map((player, index) => {
+    const playerListItemsSortedRatioPercent = this.state.allPlayers.sort(this.sortByWinRatioPercentage)
+    const playerListItemsWinLoss = playerListItemsSortedRatioPercent.map((player, index) => {
       return ( 
           <ListItem
           key={index}
@@ -48,19 +62,28 @@ class Leaderboard extends React.Component {
             </Navigation>
           </AppBar>
           <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
-            <Tab label='Wins' disabled><small>First Content</small></Tab>
+            <Tab label='Wins'>
+              <List selectable ripple>
+                <ListSubHeader caption='Total Wins' />
+                {playerListItemsAmountWins}
+                <ListDivider />
+
+              </List>
+            </Tab>
 
             <Tab label='W/L'>
               <List selectable ripple>
                   <ListSubHeader caption='Win/Loss Ratio' />
-                  {playerListItemsMap}
+                  {playerListItemsWinLoss}
                   <ListDivider />
                   <ListSubHeader caption='Biggest Win Streak' />
                   <ListItem caption='Person' leftIcon='send' />
                 </List>
             </Tab>
 
-            <Tab label='Rating' disabled><small>Third Content</small></Tab>
+            <Tab label='Rating' disabled>
+              <small>Third Content</small>
+            </Tab>
           </Tabs>
         </div>
       )
@@ -89,6 +112,12 @@ class Leaderboard extends React.Component {
   sortByWinRatioPercentage(a, b){
     if (a.win_ratio_percentage() > b.win_ratio_percentage()) return -1;
     if (a.win_ratio_percentage() < b.win_ratio_percentage()) return 1;
+    return 0;
+  }
+
+  sortByAmountWins(a, b){
+    if (a.wins > b.wins) return -1;
+    if (a.wins < b.wins) return 1;
     return 0;
   }
 
