@@ -10,6 +10,19 @@ class PlayerModel {
     this.losses = parseInt(optionsHash.losses) || 0
     this.noGames = this.wins + this.losses
   }
+
+  win_ratio_percentage(){
+    const ratio = Math.round(this.wins / this.noGames * 10000) /100
+    return ratio
+  }
+
+  win_ratio_ratio(){
+    const ratio = `${this.wins/this.losses}:1`
+    return ratio
+  }
+
+  
+
 }
 
 //so specs can read it
