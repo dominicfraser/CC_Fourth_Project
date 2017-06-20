@@ -17,11 +17,15 @@ class PlayerModel {
   }
 
   win_ratio_ratio(){
-    const ratio = `${this.wins/this.losses}:1`
+    let ratio = null
+    if(this.losses > 0){
+      ratio = `${this.wins/this.losses}:1`
+    } else {
+      ratio = `${this.wins}:${this.losses}`
+    }
     return ratio
   }
 
-  
 
 }
 
