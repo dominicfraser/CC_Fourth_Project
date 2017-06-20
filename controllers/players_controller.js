@@ -6,13 +6,15 @@ const query = new dbQueryHelper
 
 playersRouter.get('/', query.findAllPlayers)
 
+playersRouter.get('/withstats', query.findAllPlayersWithStats)
+
 playersRouter.post('/', query.addPlayer)
 
 playersRouter.delete('/:id', query.deletePlayer)
 
 playersRouter.get('/:id', query.findPlayerById)
 
-playersRouter.get('/:id/stats', query.findPlayerStats)
+playersRouter.get('/:id/withstats', query.findPlayerWithStats)
 
 playersRouter.patch('/:id', query.updatePlayer)
 

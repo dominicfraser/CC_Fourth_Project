@@ -40,6 +40,7 @@ CREATE TABLE games(
   p1_score INT4,
   p2_score INT4,
   winner_id INT4,
+  loser_id INT4,
   tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(2),
   p1_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
   p2_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
@@ -65,10 +66,13 @@ RETURNS TRIGGER AS $d$
 BEGIN
 IF NEW.p1_score > NEW.p2_score THEN
    NEW.winner_id = NEW.p1_id;
+   NEW.loser_id = NEW.p2_id;
 ELSIF NEW.p1_score < NEW.p2_score THEN
   NEW.winner_id = NEW.p2_id;
+  NEW.loser_id = NEW.p1_id;
 ELSE
  NEW.winner_id = 0;
+ NEW.loser_id = 0;
 END IF;
 RETURN NEW;
 END;
@@ -135,3 +139,15 @@ CREATE TRIGGER add_player_joins
 AFTER INSERT ON players
 FOR EACH ROW
 EXECUTE PROCEDURE add_g_o_joins();
+
+CREATE VIEW get_losses AS 
+SELECT players.*, count(games.loser_id) AS losses 
+FROM players INNER JOIN games 
+ON games.loser_id = players.id 
+GROUP BY games.loser_id, players.id;
+
+CREATE VIEW get_wins AS
+SELECT players.*, count(games.winner_id) AS wins 
+FROM players INNER JOIN games 
+ON games.winner_id = players.id 
+GROUP BY games.winner_id, players.id;

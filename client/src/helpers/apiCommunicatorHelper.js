@@ -15,6 +15,12 @@ class ApiCommunicatorHelper {
       callback(players)
     })
   }
+  allPlayersWithStats(callback){
+    this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/players/withstats", (results) => {
+      const players = this.populatePlayers(results)
+      callback(players)
+    })
+  }
 
 
 

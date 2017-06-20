@@ -29,7 +29,9 @@ class Leaderboard extends React.Component {
           key={index}
           avatar='./public/img/ic_account_circle_white_24px.svg'
           caption={player.p_name}
-          // legend="legend"
+          leftActions={[<p key={0}>left</p>]}
+          rightActions={[<p key={0}>right</p>]}
+          // legend={player.id}
           rightIcon='star'
         />
       )
@@ -73,12 +75,11 @@ class Leaderboard extends React.Component {
   findAllLocations(){
     this.apiCommunicatorHelper.allLocations((locations) => {
       this.setState({ locations: locations })
-  console.log('locations in leaderboard', locations)
     })
   }
 
   findAllPlayers(){
-    this.apiCommunicatorHelper.allPlayers((players) => {
+    this.apiCommunicatorHelper.allPlayersWithStats((players) => {
       this.setState({ allPlayers: players })
     })
   }
