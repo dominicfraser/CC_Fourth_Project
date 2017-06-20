@@ -1,6 +1,7 @@
 import ApiRequestHelper from './apiRequestHelper'
 import LocationModel from '../models/LocationModel'
 import PlayerModel from '../models/PlayerModel'
+import GameModel from '../models/GameModel'
 
 class ApiCommunicatorHelper {
   constructor(){
@@ -22,14 +23,20 @@ class ApiCommunicatorHelper {
     })
   }
 
-
-
 //LOCATIONS
   allLocations(callback){
     this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/locations", (results) => {
       const locations = this.populateLocations(results)
       callback(locations)
     })
+  }
+
+//GAMES
+  addGame(callback, options){
+    this.apiRequestHelper.makePostRequest("http://localhost:3000/api/games", (results) => {
+      const game = new GameModel(results)
+      callback(game)
+    }, options)
   }
 
 //helpers

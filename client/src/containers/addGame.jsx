@@ -24,9 +24,14 @@ class AddGame extends React.Component {
     this.findAllPlayers()
 
     this.handleLocationChange = this.handleLocationChange.bind(this)
+    
     this.handlePlayer1Change = this.handlePlayer1Change.bind(this)
     this.handlePlayer2Change = this.handlePlayer2Change.bind(this)
+    
     this.handleP1ScoreChange = this.handleP1ScoreChange.bind(this)
+    this.handleP2ScoreChange = this.handleP2ScoreChange.bind(this)
+    
+    this.submitGameButton = this.submitGameButton.bind(this)
   }
 
   render(){
@@ -82,12 +87,26 @@ class AddGame extends React.Component {
           showSuggestionsWhenValueIsSet={true}
         />
 
-        <Button label='Add Game' href='/#/' raised primary />
+        <Button label='Add Game' href='/#/' onClick={this.submitGameButton} raised primary />
         
       </div>
     )
-
+    
   }
+
+  submitGameButton(){
+    console.log('pressed')
+    this.apiCommunicatorHelper.addGame((submittedGame) => {
+      console.log('callback return', submittedGame)
+    }, JSON.stringify({ 
+      p1_id: this.state.selectedPlayer1.id, 
+      p2_id: this.state.selectedPlayer2.id, 
+      p1_score: this.state.player1score,
+      p2_score: this.state.player2score,
+      location_id: this.state.selectedLocation.id 
+    }))
+  }
+
 //LOCATION
   handleLocationChange(value){
     let locationObject = ""
