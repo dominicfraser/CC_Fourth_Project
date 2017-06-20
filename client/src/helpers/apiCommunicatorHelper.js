@@ -31,12 +31,6 @@ class ApiCommunicatorHelper {
       callback(locations)
     })
   }
-  // allLocationNames(callback){
-  //   this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/locations", (results) => {
-  //     const locations = this.findLocationNames(results)
-  //     callback(locations)
-  //   })
-  // }
 
 //helpers
 populateLocations(results){
@@ -45,12 +39,6 @@ populateLocations(results){
   })
   return locations
 }
-// findLocationNames(results){
-//   const locations = results.map((resultObject) => {
-//     return resultObject.l_name
-//   })
-//   return locations
-// }
 populatePlayers(results){
   const players = results.map((resultObject) => {
     return new PlayerModel(resultObject)
