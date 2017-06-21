@@ -87,8 +87,9 @@ class AddGame extends React.Component {
           showSuggestionsWhenValueIsSet={true}
         />
 
-        <Button label='Add Game' href='/#/' onClick={this.submitGameButton} raised primary />
-        
+        <div id='add-game-button'>
+          <Button label='Add Game' href='/#/' onClick={this.submitGameButton} raised primary />
+        </div>
       </div>
     )
     
