@@ -16,7 +16,6 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
-//app.use(verifyToken)
 app.use(allRoutes)
 app.use(express.static('client/build'))
 

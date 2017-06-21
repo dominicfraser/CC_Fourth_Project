@@ -9,10 +9,28 @@ class dbQueryHelper {
     const u_name = req.body.u_name
     const password = req.body.password
 
-    console.log("got to add user")
-
     db.query(sql, [u_name, password])
       .then(user => user[0])
+      .then(signTokenResponse)
+      .catch(next) 
+  }
+
+  loginUser(req, res, signTokenResponse, next){
+    const sql = "SELECT * FROM users WHERE u_name = $1"
+
+    const u_name = req.body.u_name
+    const password = req.body.password
+
+    db.query(sql, [u_name])
+      .then(user => {
+
+        if(user[0].password === password) {
+          return user[0]
+        } else {
+          return null
+        }
+
+      })
       .then(signTokenResponse)
       .catch(next) 
   }
