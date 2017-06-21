@@ -1,9 +1,7 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import AppBar from 'react-toolbox/lib/app_bar'
-import Navigation from 'react-toolbox/lib/navigation'
-import NavigationLinks from '../components/NavigationLinks'
-import Link from 'react-toolbox/lib/Link'
+import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
 
@@ -44,10 +42,7 @@ class Leaderboard extends React.Component {
           key={index}
           avatar='./public/img/ic_account_circle_white_24px.svg'
           caption={player.p_name}
-          // leftActions={[<p key={0}>{player.win_ratio_ratio()}</p>]}
           rightActions={[<p key={0}>W/L Ratio: {player.win_ratio_ratio()}</p>]}
-          // legend={player.id}
-          // rightIcon='star'
         />
       )
     })

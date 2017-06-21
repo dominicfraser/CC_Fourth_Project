@@ -2,7 +2,6 @@ import React from 'react'
 import Navigation from 'react-toolbox/lib/navigation'
 import Link from 'react-toolbox/lib/Link'
 
-
 const NavigationLinks = function(props){
 
   return (
