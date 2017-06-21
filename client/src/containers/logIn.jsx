@@ -49,6 +49,7 @@ class logIn extends React.Component {
   }
 
   handlePasswordChange(value){
+
     this.setState({ password: value })
   }
 

@@ -1,5 +1,7 @@
 "use strict"
 const db = require('./pgHelper')
+const sha512 = require('js-sha512')
+
 
 class dbQueryHelper {
 //USERS
@@ -8,8 +10,9 @@ class dbQueryHelper {
 
     const u_name = req.body.u_name
     const password = req.body.password
+    const passwordHashed = sha512(password)
 
-    db.query(sql, [u_name, password])
+    db.query(sql, [u_name, passwordHashed])
       .then(user => user[0])
       .then(signTokenResponse)
       .catch(next) 
@@ -18,12 +21,14 @@ class dbQueryHelper {
     const sql = "SELECT * FROM users WHERE u_name = $1"
 
     const u_name = req.body.u_name
-    const password = req.body.password
+    const inputPassword = req.body.password
 
     db.query(sql, [u_name])
       .then(user => {
 
-        if(user[0].password === password) {
+        const inputPasswordHashed = sha512(inputPassword)
+
+        if(user[0].password === inputPasswordHashed) {
           return user[0]
         } else {
           return null

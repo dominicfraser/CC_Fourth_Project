@@ -13,12 +13,13 @@
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "js-sha512": "^0.3.0",
     "jsonwebtoken": "^7.4.1",
-    "morgan": "^1.8.2",
     "pg": "^6.0.2"
   },
   "devDependencies": {
     "mocha": "^3.4.2",
+    "morgan": "^1.8.2",
     "body-parser": "^1.15.2"
   },
   "description": ""
