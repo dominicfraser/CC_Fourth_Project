@@ -2,6 +2,7 @@ import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
+import NavigationLinks from '../components/NavigationLinks'
 import Link from 'react-toolbox/lib/Link'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
@@ -26,10 +27,7 @@ class logIn extends React.Component {
     return (
       <div>
         <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
-          <Navigation type='horizontal'>
-            <Link href='/#/' icon='person' />
-            <Link href='/#/addGame' active icon='add' />
-          </Navigation>
+          <NavigationLinks />
         </AppBar>
 
         <Input type='text' label='Username: Email' name='u-name' value={this.state.u_name} onChange={this.handleUsernameChange} required/>

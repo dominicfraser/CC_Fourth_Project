@@ -2,6 +2,7 @@ import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
+import NavigationLinks from '../components/NavigationLinks'
 import Link from 'react-toolbox/lib/Link'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
@@ -42,10 +43,7 @@ class AddGame extends React.Component {
     return (
       <div>
         <AppBar title='Add New Game' leftIcon='menu' rightIcon=''>
-          <Navigation type='horizontal'>
-            <Link href='/#/' icon='person' />
-            <Link href='/#/addGame' active icon='add' />
-          </Navigation>
+          <NavigationLinks />
         </AppBar>
 <div className='div50per'>
         <Autocomplete

@@ -2,6 +2,7 @@ import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
+import NavigationLinks from '../components/NavigationLinks'
 import Link from 'react-toolbox/lib/Link'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
@@ -53,12 +54,10 @@ class Leaderboard extends React.Component {
 
     return (
       <div>
-        <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
-          <Navigation type='horizontal'>
-            <Link href='/#/' icon='person' />
-            <Link href='/#/addGame' icon='add' />
-          </Navigation>
+        <AppBar title='Leaderboard' leftIcon='menu' rightIcon=''>
+          <NavigationLinks />
         </AppBar>
+
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Wins'>
             <List selectable ripple>
