@@ -1,4 +1,19 @@
-/*body {
-  box-sizing: border-box;
-  margin: 0;
-}*/
+html, body { 
+  margin: 0; padding: 0; 
+}
+
+#add-game-button {
+  text-align: center;
+}
+
+
+
+
+@media screen and (min-width: 376px) {
+
+  .div50per {
+      width: 50%;
+      display: inline-block;
+  }
+
+}

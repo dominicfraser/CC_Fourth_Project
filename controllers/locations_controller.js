@@ -1,7 +1,7 @@
 const express = require('express')
 const locationsRouter = new express.Router()
 const dbQueryHelper = require('../db/dbQueryHelper.js')
-const query = new dbQueryHelper
+const query = new dbQueryHelper()
 
 locationsRouter.get('/', query.findAllLocations)
 

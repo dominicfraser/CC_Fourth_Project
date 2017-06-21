@@ -27,6 +27,17 @@ class ApiRequestHelper {
     request.send()
   }
 
+  makeLogOutDeleteRequest(url){
+    const request = new XMLHttpRequest()
+    request.open('DELETE', url)
+    request.addEventListener('load', function () {
+      if (request.status !== 200) return
+      const jsonString = request.responseText
+      const resultsObject = JSON.parse(jsonString)
+    })
+    request.send()
+  }
+
   makePostRequest(url, callback, payload){
     const request = new XMLHttpRequest()
     request.open('POST', url)

@@ -1,7 +1,7 @@
 const express = require('express')
 const groupsRouter = new express.Router()
 const dbQueryHelper = require('../db/dbQueryHelper.js')
-const query = new dbQueryHelper
+const query = new dbQueryHelper()
 
 groupsRouter.get('/', query.findAllGroups)
 
