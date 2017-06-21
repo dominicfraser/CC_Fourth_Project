@@ -2,7 +2,7 @@ const express = require('express')
 const playersRouter
  = new express.Router()
 const dbQueryHelper = require('../db/dbQueryHelper.js')
-const query = new dbQueryHelper
+const query = new dbQueryHelper()
 
 playersRouter.get('/', query.findAllPlayers)
 

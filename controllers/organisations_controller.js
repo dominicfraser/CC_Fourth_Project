@@ -1,7 +1,7 @@
 const express = require('express')
 const organisationsRouter = new express.Router()
 const dbQueryHelper = require('../db/dbQueryHelper.js')
-const query = new dbQueryHelper
+const query = new dbQueryHelper()
 
 organisationsRouter.get('/', query.findAllOrganisations)
 
