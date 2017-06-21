@@ -39,7 +39,7 @@ class AddGame extends React.Component {
     const playerNames = this.findAllPlayerNames()
 
     return (
-      <div>
+      <form>
         <AppBar title='Add New Game' leftIcon='menu' rightIcon=''>
           <NavigationLinks />
         </AppBar>
@@ -89,7 +89,7 @@ class AddGame extends React.Component {
         <div id='add-game-button'>
           <Button label='Add Game' href='/#/' onClick={this.submitGameButton} raised primary />
         </div>
-      </div>
+      </form>
     )
     
   }

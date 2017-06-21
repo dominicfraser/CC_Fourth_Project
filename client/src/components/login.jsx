@@ -19,7 +19,7 @@ class Login extends React.Component {
 
   render(){
     return (
-      <div>
+      <form>
 
         <Input type='text' label='Username: Email' name='u-name' value={this.state.u_name} onChange={this.handleUsernameChange} required/>
 
@@ -27,7 +27,7 @@ class Login extends React.Component {
 
         <Button label='Log In' href='/#/' onClick={this.loginButton} raised primary />
 
-      </div>
+      </form>
     )
   }
 
