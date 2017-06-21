@@ -9,10 +9,14 @@ class ApiCommunicatorHelper {
   }
 
 //LOGIN
-  logIn(callback){
-    this.apiRequestHelper.makePostRequest("")
+  logIn(callback, options){
+    this.apiRequestHelper.makePostRequest("http://localhost:3000/api/auth/loginuser", (results) => {
+      callback(results)
+    }, options)
   }
-
+  logOut(callback){
+    this.apiRequestHelper.makeLogOutDeleteRequest("http://localhost:3000/api/auth/logoutuser")
+  }
 
 //PLAYERS
   allPlayers(callback){

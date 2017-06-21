@@ -1,24 +1,25 @@
 const express = require('express')
-const usersRouter = new express.Router()
+const authRouter = new express.Router()
 const dbQueryHelper = require('../db/dbQueryHelper.js')
 const query = new dbQueryHelper()
 
-const userControllers = function(signToken) {
+const authController = function(signToken) {
   
-  usersRouter.post('/adduser', (req,res,next) => {
+  authRouter.post('/adduser', (req,res,next) => {
     const signTokenResponse = function(user) {
 
         const token = signToken(user)
 
+        res.cookie('jwtcookie', token, {maxAge: 1000*60*60*24})
+
         res.json({
-          user: user,
-          token: token
+          user: user
         })
     }
     query.addUser(req,res,signTokenResponse, next)
   })
 
-  usersRouter.post('/loginuser', (req,res,next) => {
+  authRouter.post('/loginuser', (req,res,next) => {
     const signTokenResponse = function(user) {
 
       if(user === null) {
@@ -29,15 +30,22 @@ const userControllers = function(signToken) {
       } else {
         const token = signToken(user)
 
+        res.cookie('jwtcookie', token, {maxAge: 1000*60*60*24})
+
         res.json({
-          user: user,
-          token: token
+          user: user
         }) 
       }
     }
-    query.loginUser(req,res,signTokenResponse, next)
+    query.logInUser(req, res, signTokenResponse, next)
   })
-  return usersRouter
+
+  authRouter.delete('/logoutuser', (req,res,next) => {
+    res.cookie('jwtcookie', "", {maxAge: 1000})
+    res.status(204).send()
+  })
+
+  return authRouter
 }
 
-module.exports = userControllers
+module.exports = authController

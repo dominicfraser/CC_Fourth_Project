@@ -17,7 +17,8 @@ class logIn extends React.Component {
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.signInButton = this.signInButton.bind(this)
+    this.logInButton = this.logInButton.bind(this)
+    this.logOutButton = this.logOutButton.bind(this)
   }
 
   render(){
@@ -35,7 +36,9 @@ class logIn extends React.Component {
 
         <Input type='text' label='Password' name='password' value={this.state.password} onChange={this.handlePasswordChange} required/>
 
-        <Button label='Sign In' href='/#/' onClick={this.signInButton} raised primary />
+        <Button label='Log In' href='/#/' onClick={this.logInButton} raised primary />
+
+        <Button label='Log Out' href='/#/login' onClick={this.logOutButton} raised />
 
       </div>
     )
@@ -46,12 +49,20 @@ class logIn extends React.Component {
   }
 
   handlePasswordChange(value){
-    this.setState({ password: password })
+    this.setState({ password: value })
   }
 
-  signInButton(){
-console.log('pressed')
-    // this.apiCommunicatorHelper.
+  logInButton(){
+    this.apiCommunicatorHelper.logIn((submittedDetails) => {
+console.log('log in callback return login', submittedDetails)
+    }, JSON.stringify({
+      u_name: this.state.u_name,
+      password: this.state.password
+    }))
+  }
+
+  logOutButton(){
+    this.apiCommunicatorHelper.logOut()
   }
 
 

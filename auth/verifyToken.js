@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 const verifyToken = function(key) {
 
   return function(req, res, next) {
-
+console.log('req.cookies', req.cookies)
     // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.cookies.jwtcookie
 
     // decode token
     if (token) {
@@ -19,7 +19,7 @@ const verifyToken = function(key) {
           req.decoded = decoded
           next()
         }
-      });
+      })
 
     } else {
       // if there is no token

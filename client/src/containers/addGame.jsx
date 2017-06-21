@@ -41,13 +41,13 @@ class AddGame extends React.Component {
 
     return (
       <div>
-        <AppBar title='LeaderBoard' leftIcon='menu' rightIcon=''>
+        <AppBar title='Add New Game' leftIcon='menu' rightIcon=''>
           <Navigation type='horizontal'>
             <Link href='/#/' icon='person' />
             <Link href='/#/addGame' active icon='add' />
           </Navigation>
         </AppBar>
-
+<div className='div50per'>
         <Autocomplete
           direction="auto"
           label="Player 1"
@@ -59,7 +59,8 @@ class AddGame extends React.Component {
           showSuggestionsWhenValueIsSet={true}
           suggestionMatch="anywhere"
         />
-
+</div>
+<div className='div50per'>
         <Autocomplete
           direction="auto"
           label="Player 2"
@@ -71,6 +72,8 @@ class AddGame extends React.Component {
           showSuggestionsWhenValueIsSet={true}
           suggestionMatch="anywhere"
         />
+</div>
+
 
         <Input type='number' label='Player 1 Score' name='p1-score' value={this.state.player1score} onChange={this.handleP1ScoreChange} required/>
 
@@ -97,7 +100,7 @@ class AddGame extends React.Component {
 
   submitGameButton(){
     this.apiCommunicatorHelper.addGame((submittedGame) => {
-      console.log('callback return', submittedGame)
+console.log('callback return', submittedGame)
     }, JSON.stringify({ 
       p1_id: this.state.selectedPlayer1.id, 
       p2_id: this.state.selectedPlayer2.id, 

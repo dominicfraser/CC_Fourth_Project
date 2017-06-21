@@ -6,3 +6,14 @@ html, body {
   text-align: center;
 }
 
+
+
+
+@media screen and (min-width: 376px) {
+
+  .div50per {
+      width: 50%;
+      display: inline-block;
+  }
+
+}

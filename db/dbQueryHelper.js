@@ -14,8 +14,7 @@ class dbQueryHelper {
       .then(signTokenResponse)
       .catch(next) 
   }
-
-  loginUser(req, res, signTokenResponse, next){
+  logInUser(req, res, signTokenResponse, next){
     const sql = "SELECT * FROM users WHERE u_name = $1"
 
     const u_name = req.body.u_name
@@ -29,7 +28,6 @@ class dbQueryHelper {
         } else {
           return null
         }
-
       })
       .then(signTokenResponse)
       .catch(next) 
