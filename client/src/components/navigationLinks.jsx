@@ -6,7 +6,8 @@ const NavigationLinks = function(props){
 
   return (
     <Navigation type='horizontal'>
-      <Link href='/#/' icon='person' />
+      <Link href='/#/login' icon='vpn_key' />
+      <Link href='/#/profile' icon='person' />
       <Link href='/#/' icon='insert_chart' />
       <Link href='/#/addGame' icon='add' />
     </Navigation>
