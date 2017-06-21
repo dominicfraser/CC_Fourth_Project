@@ -17,6 +17,11 @@ class ApiCommunicatorHelper {
   logOut(callback){
     this.apiRequestHelper.makeLogOutDeleteRequest("http://localhost:3000/api/auth/logoutuser")
   }
+  createAccount(callback, options){
+    this.apiRequestHelper.makePostRequest("http://localhost:3000/api/auth/adduser", (results) => {
+      callback(results)
+    }, options)
+  }
 
 //PLAYERS
   allPlayers(callback){
