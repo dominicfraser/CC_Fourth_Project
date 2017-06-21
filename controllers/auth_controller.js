@@ -5,7 +5,7 @@ const query = new dbQueryHelper()
 
 const userControllers = function(signToken) {
   
-  usersRouter.post('/', (req,res,next) => {
+  usersRouter.post('/adduser', (req,res,next) => {
     const signTokenResponse = function(user) {
 
         const token = signToken(user)
@@ -18,13 +18,13 @@ const userControllers = function(signToken) {
     query.addUser(req,res,signTokenResponse, next)
   })
 
-  usersRouter.post('/sign_in', (req,res,next) => {
+  usersRouter.post('/loginuser', (req,res,next) => {
     const signTokenResponse = function(user) {
 
       if(user === null) {
         res.status(401)
         res.json({
-          message: "incorrect password"
+          message: "incorrect password or username"
         })
       } else {
         const token = signToken(user)

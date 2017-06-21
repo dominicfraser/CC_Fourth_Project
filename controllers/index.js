@@ -15,7 +15,7 @@ const allRoutes = function(verifyToken, signToken) {
 
   router.use('/api/joins', require('./joins_controller'))
 
-  router.use('/users', require('./users_controller')(signToken))
+  router.use('/api/auth', require('./auth_controller')(signToken))
 
 
   return router

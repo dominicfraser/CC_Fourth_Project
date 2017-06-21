@@ -8,6 +8,11 @@ class ApiCommunicatorHelper {
     this.apiRequestHelper = new ApiRequestHelper()
   }
 
+//LOGIN
+  logIn(callback){
+    this.apiRequestHelper.makePostRequest("")
+  }
+
 
 //PLAYERS
   allPlayers(callback){

@@ -10,7 +10,7 @@ import Button from 'react-toolbox/lib/button'
 class AddGame extends React.Component {
   constructor(props){
     super(props)
-    this.state ={
+    this.state = {
       locations: [],
       selectedLocation: "",
       players: [],
@@ -41,7 +41,7 @@ class AddGame extends React.Component {
 
     return (
       <div>
-        <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
+        <AppBar title='LeaderBoard' leftIcon='menu' rightIcon=''>
           <Navigation type='horizontal'>
             <Link href='/#/' icon='person' />
             <Link href='/#/addGame' active icon='add' />
@@ -96,7 +96,6 @@ class AddGame extends React.Component {
   }
 
   submitGameButton(){
-    console.log('pressed')
     this.apiCommunicatorHelper.addGame((submittedGame) => {
       console.log('callback return', submittedGame)
     }, JSON.stringify({ 
