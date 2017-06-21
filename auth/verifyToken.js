@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 const verifyToken = function(key) {
 
   return function(req, res, next) {
-console.log('req.cookies', req.cookies)
     // check header or url parameters or post parameters for token
     const token = req.cookies.jwtcookie
 

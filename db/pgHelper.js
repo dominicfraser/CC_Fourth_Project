@@ -1,7 +1,9 @@
 "use strict"
+const config = require('../config')
+
 
 const pg = require('pg'),
-    databaseURL = "postgres://user@localhost/react_table_tennis"
+    databaseURL = config.database
 
     exports.query = function (sql, values, dontLog) {
 
