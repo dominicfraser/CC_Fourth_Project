@@ -11,7 +11,6 @@ class Leaderboard extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      loggedIn: false,
       active: false,
       fixedIndex: 1,
       allPlayers: [],
@@ -22,7 +21,6 @@ class Leaderboard extends React.Component {
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
 
     this.findAllPlayers()
-    this.checkLoggedIn()
   }
 
   render(){
@@ -56,7 +54,7 @@ class Leaderboard extends React.Component {
     return (
       <div>
         <AppBar title='Leaderboard' leftIcon='menu' onLeftIconClick={this.handleDrawerToggle} rightIcon=''>
-          <NavigationLinks loggedIn={this.state.loggedIn}/>
+          <NavigationLinks />
         </AppBar>
 
         <Drawer active={this.state.active} onOverlayClick={this.handleDrawerToggle}>
@@ -120,16 +118,6 @@ class Leaderboard extends React.Component {
     if (a.wins > b.wins) return -1;
     if (a.wins < b.wins) return 1;
     return 0;
-  }
-
-  checkLoggedIn(){
-    this.apiCommunicatorHelper.checkLoggedIn((check) => {
-      if(check.description === 'user is logged in'){
-        this.setState({ loggedIn: true })
-      } else {
-        this.setState({ loggedIn: false })
-      }
-    })
   }
 
 }
