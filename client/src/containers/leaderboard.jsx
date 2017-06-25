@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import AppBar from 'react-toolbox/lib/app_bar'
 import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
@@ -14,6 +13,7 @@ class Leaderboard extends React.Component {
       allPlayers: [],
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
+    
     this.handleFixedTabChange = this.handleFixedTabChange.bind(this)
 
     this.findAllPlayers()
@@ -49,9 +49,8 @@ class Leaderboard extends React.Component {
 
     return (
       <div>
-        <AppBar title='Leaderboard' leftIcon='menu' rightIcon=''>
-          <NavigationLinks />
-        </AppBar>
+        <NavigationLinks appBarTitle='Leaderboard' appLeftIconFunction={this.handleDrawerToggle}/>
+
 
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Wins'>

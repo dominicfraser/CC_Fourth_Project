@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import AppBar from 'react-toolbox/lib/app_bar'
 import NavigationLinks from '../components/navigationLinks'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
@@ -40,9 +39,8 @@ class AddGame extends React.Component {
 
     return (
       <form>
-        <AppBar title='Add New Game' leftIcon='menu' rightIcon=''>
-          <NavigationLinks />
-        </AppBar>
+          <NavigationLinks appBarTitle='Add New Game' />
+
 <div className='div50per'>
         <Autocomplete
           direction="auto"

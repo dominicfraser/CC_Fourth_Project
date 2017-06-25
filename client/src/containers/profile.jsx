@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import AppBar from 'react-toolbox/lib/app_bar'
 import NavigationLinks from '../components/navigationLinks'
 
 class Profile extends React.Component {
@@ -16,9 +15,7 @@ class Profile extends React.Component {
 
     return (
         <div>
-          <AppBar title='Profile' leftIcon='menu' rightIcon=''>
-            <NavigationLinks />
-          </AppBar>
+          <NavigationLinks appBarTitle='Profile'/>
 
           <p> Under Construction </p>
         </div>

@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import AppBar from 'react-toolbox/lib/app_bar'
 import NavigationLinks from '../components/navigationLinks'
 import Login from '../components/login'
 import Logout from '../components/logout'
@@ -17,9 +16,7 @@ class LoginPage extends React.Component {
 
     return (
       <div>
-        <AppBar title='Table Tennis Tracker' leftIcon='menu' rightIcon=''>
-          <NavigationLinks />
-        </AppBar>
+        <NavigationLinks appBarTitle='Table Tennis Tracker'/>
 
         <Login />
         <Logout />
