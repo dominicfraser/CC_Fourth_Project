@@ -1,24 +1,20 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import AppBar from 'react-toolbox/lib/app_bar'
 import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
-import Drawer from 'react-toolbox/lib/drawer'
 
 
 class Leaderboard extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      active: false,
       fixedIndex: 1,
       allPlayers: [],
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
     
     this.handleFixedTabChange = this.handleFixedTabChange.bind(this)
-    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
 
     this.findAllPlayers()
   }
@@ -53,14 +49,8 @@ class Leaderboard extends React.Component {
 
     return (
       <div>
-        <AppBar title='Leaderboard' leftIcon='menu' onLeftIconClick={this.handleDrawerToggle} rightIcon=''>
-          <NavigationLinks />
-        </AppBar>
+        <NavigationLinks appBarTitle='Leaderboard' appLeftIconFunction={this.handleDrawerToggle}/>
 
-        <Drawer active={this.state.active} onOverlayClick={this.handleDrawerToggle}>
-          <h5>Drawer content stuff</h5>
-          <p>stuffstuffstuff</p>
-        </Drawer>
 
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Wins'>
@@ -92,10 +82,6 @@ class Leaderboard extends React.Component {
   }
 
   componentDidMount(){
-  }
-
-  handleDrawerToggle(){
-    this.setState({active: !this.state.active})
   }
 
   handleFixedTabChange(index){
