@@ -15,7 +15,7 @@ class Profile extends React.Component {
 
     return (
         <div>
-          <NavigationLinks appBarTitle='Profile'/>
+          <NavigationLinks appBarTitle='Profile' auth={this.props.auth}/>
 
           <p> Under Construction </p>
         </div>

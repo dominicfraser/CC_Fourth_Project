@@ -19,6 +19,8 @@ class Logout extends React.Component {
 
   logoutButton(){
     this.apiCommunicatorHelper.logOut()
+    // this.props.checkLoggedIn()
+    
   }
 }
 

@@ -8,6 +8,7 @@ import Button from 'react-toolbox/lib/button'
 class AddGame extends React.Component {
   constructor(props){
     super(props)
+// console.log('props', props)
     this.state = {
       locations: [],
       selectedLocation: "",
@@ -33,13 +34,14 @@ class AddGame extends React.Component {
   }
 
   render(){
+console.log('this.props in addGame', this.props)
 
     const locationNames = this.findAllLocationNames()
     const playerNames = this.findAllPlayerNames()
 
     return (
       <form>
-          <NavigationLinks appBarTitle='Add New Game' />
+          <NavigationLinks appBarTitle='Add New Game' auth={this.props.auth} />
 
 <div className='div50per'>
         <Autocomplete

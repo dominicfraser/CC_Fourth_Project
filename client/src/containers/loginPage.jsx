@@ -16,10 +16,10 @@ class LoginPage extends React.Component {
 
     return (
       <div>
-        <NavigationLinks appBarTitle='Table Tennis Tracker'/>
+        <NavigationLinks appBarTitle='Table Tennis Tracker' auth={this.props.auth} />
 
-        <Login />
-        <Logout />
+        <Login checkLoggedIn={this.props.checkLoggedIn} />
+        <Logout checkLoggedIn={this.props.checkLoggedIn} />
         <CreateAccount />
 
       </div>

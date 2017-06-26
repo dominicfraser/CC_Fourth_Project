@@ -20,6 +20,7 @@ class Leaderboard extends React.Component {
   }
 
   render(){
+    
     const playerListItemsSortedAmountWins = this.state.allPlayers.sort(this.sortByAmountWins)
     const playerListItemsAmountWins = playerListItemsSortedAmountWins.map((player, index) => {
       return ( 
@@ -49,7 +50,7 @@ class Leaderboard extends React.Component {
 
     return (
       <div>
-        <NavigationLinks appBarTitle='Leaderboard' appLeftIconFunction={this.handleDrawerToggle}/>
+        <NavigationLinks appBarTitle='Leaderboard' />
 
 
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
