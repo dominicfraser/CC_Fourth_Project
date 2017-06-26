@@ -36,16 +36,12 @@ class Login extends React.Component {
   }
 
   handlePasswordChange(value){
-
     this.setState({ password: value })
   }
 
   loginButton(){
     this.apiCommunicatorHelper.logIn((submittedDetails) => {
 console.log('log in callback return login', submittedDetails)
-    
-    this.props.checkLoggedIn()
-    
     }, JSON.stringify({
       u_name: this.state.u_name,
       password: this.state.password

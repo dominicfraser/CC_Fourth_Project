@@ -20,7 +20,6 @@ class Leaderboard extends React.Component {
   }
 
   render(){
-    
     const playerListItemsSortedAmountWins = this.state.allPlayers.sort(this.sortByAmountWins)
     const playerListItemsAmountWins = playerListItemsSortedAmountWins.map((player, index) => {
       return ( 

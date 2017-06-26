@@ -12,23 +12,21 @@ class NavigationLinks extends React.Component {
     super(props)
     this.state = {
       active: false,
-      // loggedIn: false
+      loggedIn: false
     }
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
 
-    // this.checkLoggedIn()
+    this.checkLoggedIn()
   }
 
   render(){
-// console.log('this.props.auth in navigationLinks', this.props.auth)
-// console.log('this.props in navigationLinks', this.props)
 
     let addGame = '/#/login'
     let profile = '/#/login'
-    if(this.props.auth){
+    if(this.state.loggedIn){
       addGame = '/#/addGame'
       profile = '/#/profile'
     } 
@@ -52,15 +50,15 @@ class NavigationLinks extends React.Component {
     )
   }
 
-  // checkLoggedIn(){
-  //   this.apiCommunicatorHelper.checkLoggedIn((check) => {
-  //     if(check.description === 'user is logged in'){
-  //       this.setState({ loggedIn: true })
-  //     } else {
-  //       this.setState({ loggedIn: false })
-  //     }
-  //   })
-  // }
+  checkLoggedIn(){
+    this.apiCommunicatorHelper.checkLoggedIn((check) => {
+      if(check.description === 'user is logged in'){
+        this.setState({ loggedIn: true })
+      } else {
+        this.setState({ loggedIn: false })
+      }
+    })
+  }
 
   handleDrawerToggle(){
     this.setState({active: !this.state.active})
