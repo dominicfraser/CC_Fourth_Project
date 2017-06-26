@@ -18,9 +18,12 @@ class NavigationLinks extends React.Component {
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
+  }
 
+  componentDidMount(){
     this.checkLoggedIn()
   }
+
 
   render(){
 
