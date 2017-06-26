@@ -5,6 +5,9 @@ import Link from 'react-toolbox/lib/Link'
 import Drawer from 'react-toolbox/lib/drawer'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 
+import { connect } from 'react-redux';
+import { itemsFetchData } from '../actions/actionCreators';
+
 
 
 class NavigationLinks extends React.Component {
@@ -12,7 +15,7 @@ class NavigationLinks extends React.Component {
     super(props)
     this.state = {
       active: false,
-      loggedIn: false
+      // loggedIn: false
     }
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
@@ -21,7 +24,9 @@ class NavigationLinks extends React.Component {
   }
 
   componentDidMount(){
-    this.checkLoggedIn()
+console.log('props in navigationLinks', this.props)
+    // this.checkLoggedIn()
+    this.props.fetchData("http://localhost:3000/api/auth/checker")
   }
 
 
@@ -29,7 +34,7 @@ class NavigationLinks extends React.Component {
 
     let addGame = '/#/login'
     let profile = '/#/login'
-    if(this.state.loggedIn){
+    if(this.props.isLoggedIn){
       addGame = '/#/addGame'
       profile = '/#/profile'
     } 
@@ -53,15 +58,15 @@ class NavigationLinks extends React.Component {
     )
   }
 
-  checkLoggedIn(){
-    this.apiCommunicatorHelper.checkLoggedIn((check) => {
-      if(check.description === 'user is logged in'){
-        this.setState({ loggedIn: true })
-      } else {
-        this.setState({ loggedIn: false })
-      }
-    })
-  }
+  // checkLoggedIn(){
+  //   this.apiCommunicatorHelper.checkLoggedIn((check) => {
+  //     if(check.description === 'user is logged in'){
+  //       this.setState({ loggedIn: true })
+  //     } else {
+  //       this.setState({ loggedIn: false })
+  //     }
+  //   })
+  // }
 
   handleDrawerToggle(){
     this.setState({active: !this.state.active})
@@ -69,4 +74,19 @@ class NavigationLinks extends React.Component {
 
 }
 
-export default NavigationLinks
+// export default NavigationLinks
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        hasErrored: state.itemsHasErrored,
+        isLoading: state.itemsIsLoading
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (url) => dispatch(itemsFetchData(url))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
