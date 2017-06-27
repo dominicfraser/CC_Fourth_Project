@@ -29,16 +29,14 @@ export function checkLoggedIn(url) {
         dispatch(authIsLoading(true));
 console.log('in actionCreators')
 
-
     apiCommunicatorHelper.checkLoggedInHandleError((check) => {
-
 console.log('in checkLoggedIn saying user is logged in')
 console.log('check return value', check)
             dispatch(isLoggedIn(true))
             dispatch(authIsLoading(false))
 
         }, (err) => {
-            console.log('in checkLoggedIn saying user is not logged in')
+console.log('in checkLoggedIn saying user is not logged in')
             dispatch(isLoggedIn(false))
             dispatch(authIsLoading(false))
         })

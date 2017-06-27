@@ -14,7 +14,7 @@ class NavigationLinks extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      active: false,
+      active1: false,
     }
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
@@ -49,7 +49,7 @@ console.log('props in navigationLinks', this.props)
           </Navigation>
         </AppBar>
 
-        <Drawer active={this.state.active} onOverlayClick={this.handleDrawerToggle}>
+        <Drawer active={this.state.active1} onOverlayClick={this.handleDrawerToggle}>
           <h5>Drawer content stuff</h5>
           <p>stuffstuffstuff</p>
         </Drawer>
@@ -59,7 +59,7 @@ console.log('props in navigationLinks', this.props)
 
 
   handleDrawerToggle(){
-    this.setState({active: !this.state.active})
+    this.setState({active1: !this.state.active1})
   }
 
 }
