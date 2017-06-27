@@ -21,12 +21,13 @@ class ApiRequestHelper {
     request.addEventListener('load', function () {
       if (request.status !== 200){
         if(errorCallback) {
-          errorCallback(request);
+          errorCallback(request)
         }
+      } else {
+        const jsonString = request.responseText
+        const resultsObject = JSON.parse(jsonString)
+        callback(resultsObject) 
       }
-      const jsonString = request.responseText
-      const resultsObject = JSON.parse(jsonString)
-      callback(resultsObject)
     })
     request.send()
   }
