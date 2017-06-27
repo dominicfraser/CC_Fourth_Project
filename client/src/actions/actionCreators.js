@@ -31,7 +31,7 @@ export function isLoggedIn(bool) {
     };
 }
 
-export function itemsFetchData(url) {
+export function checkLoggedIn(url) {
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 console.log('in actionCreators')
@@ -39,13 +39,13 @@ console.log('in actionCreators')
 
     apiCommunicatorHelper.checkLoggedInHandleError((check) => {
 
-console.log('in itemsFetchData saying user is logged in')
+console.log('in checkLoggedIn saying user is logged in')
 console.log('check return value', check)
             dispatch(isLoggedIn(true))
             dispatch(itemsIsLoading(false))
 
         }, (err) => {
-            console.log('in itemsFetchData saying user is not logged in')
+            console.log('in checkLoggedIn saying user is not logged in')
             dispatch(isLoggedIn(false))
             dispatch(itemsIsLoading(false))
         })

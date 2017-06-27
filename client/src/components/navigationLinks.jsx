@@ -6,7 +6,7 @@ import Drawer from 'react-toolbox/lib/drawer'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/actionCreators';
+import { checkLoggedIn } from '../actions/actionCreators';
 
 
 
@@ -25,7 +25,7 @@ class NavigationLinks extends React.Component {
   componentDidMount(){
 console.log('props in navigationLinks', this.props)
 
-    this.props.fetchData("http://localhost:3000/api/auth/checker")
+    this.props.checkAuthorised("http://localhost:3000/api/auth/checker")
   }
 
 
@@ -74,7 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(itemsFetchData(url))
+        checkAuthorised: (url) => dispatch(checkLoggedIn(url))
     };
 };
 
