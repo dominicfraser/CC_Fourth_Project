@@ -3,16 +3,9 @@ import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 const apiCommunicatorHelper = new ApiCommunicatorHelper()
 
 
-export function itemsHasErrored(bool) {
+export function authIsLoading(bool) {
     return {
-        type: 'ITEMS_HAS_ERRORED',
-        hasErrored: bool
-    };
-}
-
-export function itemsIsLoading(bool) {
-    return {
-        type: 'ITEMS_IS_LOADING',
+        type: 'AUTH_IS_LOADING',
         isLoading: bool
     };
 }
@@ -33,7 +26,7 @@ export function isLoggedIn(bool) {
 
 export function checkLoggedIn(url) {
     return (dispatch) => {
-        dispatch(itemsIsLoading(true));
+        dispatch(authIsLoading(true));
 console.log('in actionCreators')
 
 
@@ -42,12 +35,12 @@ console.log('in actionCreators')
 console.log('in checkLoggedIn saying user is logged in')
 console.log('check return value', check)
             dispatch(isLoggedIn(true))
-            dispatch(itemsIsLoading(false))
+            dispatch(authIsLoading(false))
 
         }, (err) => {
             console.log('in checkLoggedIn saying user is not logged in')
             dispatch(isLoggedIn(false))
-            dispatch(itemsIsLoading(false))
+            dispatch(authIsLoading(false))
         })
 
     };

@@ -67,8 +67,7 @@ console.log('props in navigationLinks', this.props)
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
-        hasErrored: state.itemsHasErrored,
-        isLoading: state.itemsIsLoading
+        isLoading: state.authIsLoading
     };
 };
 
