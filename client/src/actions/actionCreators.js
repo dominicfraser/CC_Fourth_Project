@@ -1,7 +1,6 @@
-import fetch from 'isomorphic-fetch'
-require('es6-promise').polyfill();
-// require('isomorphic-fetch');
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
+
+const apiCommunicatorHelper = new ApiCommunicatorHelper()
 
 
 export function itemsHasErrored(bool) {
@@ -36,29 +35,19 @@ export function itemsFetchData(url) {
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 console.log('in actionCreators')
-//         fetch(url)
-//             .then((response) => {
-//                 if (!response.ok) {
-//                     throw Error(response.statusText);
-//                 }
-// console.log('response ok')
 
-//                 dispatch(itemsIsLoading(false));
 
-//                 return response;
-//             })
-//             .then((response) => response.json())
-//             .then((items) => dispatch(isLoggedIn(true)))
-//             .catch(() => dispatch(itemsHasErrored(true)));
-    let apiCommunicatorHelper = new ApiCommunicatorHelper()
-    apiCommunicatorHelper.checkLoggedIn((check) => {
-          if(check.description === 'user is logged in'){
+    apiCommunicatorHelper.checkLoggedInHandleError((check) => {
+
+console.log('in itemsFetchData saying user is logged in')
+console.log('check return value', check)
             dispatch(isLoggedIn(true))
             dispatch(itemsIsLoading(false))
-          } else {
+
+        }, (err) => {
+            console.log('in itemsFetchData saying user is not logged in')
             dispatch(isLoggedIn(false))
             dispatch(itemsIsLoading(false))
-          }
         })
 
     };

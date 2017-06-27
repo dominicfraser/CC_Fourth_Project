@@ -15,7 +15,6 @@ class NavigationLinks extends React.Component {
     super(props)
     this.state = {
       active: false,
-      // loggedIn: false
     }
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
@@ -25,7 +24,7 @@ class NavigationLinks extends React.Component {
 
   componentDidMount(){
 console.log('props in navigationLinks', this.props)
-    // this.checkLoggedIn()
+
     this.props.fetchData("http://localhost:3000/api/auth/checker")
   }
 
@@ -58,15 +57,6 @@ console.log('props in navigationLinks', this.props)
     )
   }
 
-  // checkLoggedIn(){
-  //   this.apiCommunicatorHelper.checkLoggedIn((check) => {
-  //     if(check.description === 'user is logged in'){
-  //       this.setState({ loggedIn: true })
-  //     } else {
-  //       this.setState({ loggedIn: false })
-  //     }
-  //   })
-  // }
 
   handleDrawerToggle(){
     this.setState({active: !this.state.active})
@@ -74,7 +64,6 @@ console.log('props in navigationLinks', this.props)
 
 }
 
-// export default NavigationLinks
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,

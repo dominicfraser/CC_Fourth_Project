@@ -28,6 +28,14 @@ class ApiCommunicatorHelper {
     })
   }
 
+  checkLoggedInHandleError(callback, errorCallback){
+    this.apiRequestHelper.makeGetRequestHandleError("http://localhost:3000/api/auth/checker", (result) => {
+      callback(result)
+    }, (err) => {
+      errorCallback(err)
+    })
+  }
+
 //PLAYERS
   allPlayers(callback){
     this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/players", (results) => {
