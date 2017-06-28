@@ -6,7 +6,7 @@ import Drawer from 'react-toolbox/lib/drawer'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 
 import { connect } from 'react-redux';
-import { checkLoggedIn } from '../actions/actionCreators';
+import { checkLoggedIn, checkDrawerIsActive } from '../actions/actionCreators';
 
 
 
@@ -14,12 +14,10 @@ class NavigationLinks extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      active1: false,
     }
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
-    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
   }
 
   componentDidMount(){
@@ -30,7 +28,6 @@ console.log('props in navigationLinks', this.props)
 
 
   render(){
-
     let addGame = '/#/login'
     let profile = '/#/login'
     if(this.props.isLoggedIn){
@@ -40,7 +37,7 @@ console.log('props in navigationLinks', this.props)
 
     return (
       <div>
-        <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={this.handleDrawerToggle} >
+        <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={this.props.handleDrawerToggle} >
           <Navigation type='horizontal'>
             <Link href='/#/login' icon='vpn_key' />
             <Link href={profile} icon='person' />
@@ -49,7 +46,7 @@ console.log('props in navigationLinks', this.props)
           </Navigation>
         </AppBar>
 
-        <Drawer active={this.state.active1} onOverlayClick={this.handleDrawerToggle}>
+        <Drawer active={this.props.drawerIsActive.drawerIsActive} onOverlayClick={this.props.handleDrawerToggle}>
           <h5>Drawer content stuff</h5>
           <p>stuffstuffstuff</p>
         </Drawer>
@@ -58,22 +55,20 @@ console.log('props in navigationLinks', this.props)
   }
 
 
-  handleDrawerToggle(){
-    this.setState({active1: !this.state.active1})
-  }
-
 }
 
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
-        authIsLoading: state.authIsLoading
+        authIsLoading: state.authIsLoading,
+        drawerIsActive: state.drawerIsActive
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        checkAuthorised: (url) => dispatch(checkLoggedIn(url))
+        checkAuthorised: () => dispatch(checkLoggedIn()),
+        handleDrawerToggle: () => dispatch(checkDrawerIsActive())
     };
 };
 

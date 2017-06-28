@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
-import { isLoggedIn, authIsLoading } from './splitReducers'
+import { isLoggedIn, authIsLoading, drawerIsActive } from './splitReducers'
 
 export default combineReducers({
     isLoggedIn,
-    authIsLoading
+    authIsLoading,
+    drawerIsActive
 })
