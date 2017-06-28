@@ -6,16 +6,9 @@ const apiCommunicatorHelper = new ApiCommunicatorHelper()
 export function authIsLoading(bool) {
     return {
         type: 'AUTH_IS_LOADING',
-        isLoading: bool
+        authIsLoading: bool
     };
 }
-
-// export function itemsFetchDataSuccess(items) {
-//     return {
-//         type: 'ITEMS_FETCH_DATA_SUCCESS',
-//         items
-//     };
-// }
 
 export function isLoggedIn(bool) {
     return {
@@ -42,4 +35,11 @@ console.log('in checkLoggedIn saying user is not logged in')
         })
 
     };
+}
+
+export function drawerIsActive(bool) {
+    return {
+        type: 'DRAWER_IS_ACTIVE',
+
+    }
 }

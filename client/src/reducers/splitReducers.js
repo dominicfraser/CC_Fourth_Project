@@ -1,7 +1,7 @@
 export function authIsLoading(state = false, action) {
     switch (action.type) {
         case 'AUTH_IS_LOADING':
-            return action.isLoading;
+            return action.authIsLoading;
 
         default:
             return state;
