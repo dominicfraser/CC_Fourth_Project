@@ -21,11 +21,13 @@ export function isLoggedIn(state = false, action) {
 export function drawerIsActive(state = false, action) {
     switch (action.type) {
         case 'DRAWER_IS_ACTIVE':
-            return Object.assign({}, {
-                drawerIsActive: !state.drawerIsActive
-            }) 
+            return action.drawerIsActive
 
         default:
             return state
     }
 }
+
+// Object.assign({}, state, {
+//                 drawerIsActive: !state.drawerIsActive
+//             }) 

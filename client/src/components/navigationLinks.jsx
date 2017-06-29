@@ -28,6 +28,8 @@ console.log('props in navigationLinks', this.props)
 
 
   render(){
+console.log('this.props.drawerIsActive', this.props.drawerIsActive)
+console.log('this.props', this.props)
     let addGame = '/#/login'
     let profile = '/#/login'
     if(this.props.isLoggedIn){
@@ -37,7 +39,7 @@ console.log('props in navigationLinks', this.props)
 
     return (
       <div>
-        <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={this.props.handleDrawerToggle} >
+        <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={() => this.props.handleDrawerToggle(this.props.drawerIsActive)} >
           <Navigation type='horizontal'>
             <Link href='/#/login' icon='vpn_key' />
             <Link href={profile} icon='person' />
@@ -46,7 +48,8 @@ console.log('props in navigationLinks', this.props)
           </Navigation>
         </AppBar>
 
-        <Drawer active={this.props.drawerIsActive.drawerIsActive} onOverlayClick={this.props.handleDrawerToggle}>
+        <Drawer active={this.props.drawerIsActive}
+        onOverlayClick={() => this.props.handleDrawerToggle(this.props.drawerIsActive)}>
           <h5>Drawer content stuff</h5>
           <p>stuffstuffstuff</p>
         </Drawer>
@@ -68,7 +71,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         checkAuthorised: () => dispatch(checkLoggedIn()),
-        handleDrawerToggle: () => dispatch(checkDrawerIsActive())
+        handleDrawerToggle: (toggleState) => dispatch(checkDrawerIsActive(!toggleState))
     };
 };
 
