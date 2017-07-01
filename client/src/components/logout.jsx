@@ -13,7 +13,7 @@ class Logout extends React.Component {
 
   render(){
     return (
-      <Button label='Log Out' href='/#/login' onClick={this.logoutButton} raised />
+      <Button label='Log Out' href='/#/' onClick={this.logoutButton} raised />
     )
   }
 

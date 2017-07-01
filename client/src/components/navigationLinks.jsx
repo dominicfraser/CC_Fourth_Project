@@ -5,35 +5,41 @@ import Link from 'react-toolbox/lib/Link'
 import Drawer from 'react-toolbox/lib/drawer'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 
+import { connect } from 'react-redux';
+import { checkLoggedIn, checkDrawerIsActive } from '../actions/actionCreators';
+
 
 
 class NavigationLinks extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      active: false,
-      loggedIn: false
     }
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
-    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
-
-    this.checkLoggedIn()
   }
 
-  render(){
+  componentDidMount(){
+console.log('props in navigationLinks', this.props)
 
+    this.props.checkAuthorised("http://localhost:3000/api/auth/checker")
+  }
+
+
+  render(){
+console.log('this.props.drawerIsActive', this.props.drawerIsActive)
+console.log('this.props', this.props)
     let addGame = '/#/login'
     let profile = '/#/login'
-    if(this.state.loggedIn){
+    if(this.props.isLoggedIn){
       addGame = '/#/addGame'
       profile = '/#/profile'
     } 
 
     return (
       <div>
-        <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={this.handleDrawerToggle} >
+        <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={() => this.props.handleDrawerToggle(this.props.drawerIsActive)} >
           <Navigation type='horizontal'>
             <Link href='/#/login' icon='vpn_key' />
             <Link href={profile} icon='person' />
@@ -42,7 +48,8 @@ class NavigationLinks extends React.Component {
           </Navigation>
         </AppBar>
 
-        <Drawer active={this.state.active} onOverlayClick={this.handleDrawerToggle}>
+        <Drawer active={this.props.drawerIsActive}
+        onOverlayClick={() => this.props.handleDrawerToggle(this.props.drawerIsActive)}>
           <h5>Drawer content stuff</h5>
           <p>stuffstuffstuff</p>
         </Drawer>
@@ -50,20 +57,22 @@ class NavigationLinks extends React.Component {
     )
   }
 
-  checkLoggedIn(){
-    this.apiCommunicatorHelper.checkLoggedIn((check) => {
-      if(check.description === 'user is logged in'){
-        this.setState({ loggedIn: true })
-      } else {
-        this.setState({ loggedIn: false })
-      }
-    })
-  }
-
-  handleDrawerToggle(){
-    this.setState({active: !this.state.active})
-  }
 
 }
 
-export default NavigationLinks
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        authIsLoading: state.authIsLoading,
+        drawerIsActive: state.drawerIsActive
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        checkAuthorised: () => dispatch(checkLoggedIn()),
+        handleDrawerToggle: (toggleState) => dispatch(checkDrawerIsActive(!toggleState))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
