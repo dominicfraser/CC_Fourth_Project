@@ -5,9 +5,8 @@ import Link from 'react-toolbox/lib/Link'
 import Drawer from 'react-toolbox/lib/drawer'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 
-import { connect } from 'react-redux';
-import { checkLoggedIn, checkDrawerIsActive } from '../actions/actionCreators';
-
+import { connect } from 'react-redux'
+import { checkLoggedIn, checkDrawerIsActive } from '../actions/actionCreators'
 
 
 class NavigationLinks extends React.Component {
@@ -21,15 +20,14 @@ class NavigationLinks extends React.Component {
   }
 
   componentDidMount(){
-console.log('props in navigationLinks', this.props)
-
+// console.log('props in navigationLinks', this.props)
     this.props.checkAuthorised("http://localhost:3000/api/auth/checker")
+console.log('ran checkAuthorised')
   }
 
 
   render(){
-console.log('this.props.drawerIsActive', this.props.drawerIsActive)
-console.log('this.props', this.props)
+console.log('this.props.isLoggedIn', this.props.isLoggedIn)
     let addGame = '/#/login'
     let profile = '/#/login'
     if(this.props.isLoggedIn){
@@ -39,6 +37,7 @@ console.log('this.props', this.props)
 
     return (
       <div>
+      
         <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={() => this.props.handleDrawerToggle(this.props.drawerIsActive)} >
           <Navigation type='horizontal'>
             <Link href='/#/login' icon='vpn_key' />
@@ -65,14 +64,14 @@ const mapStateToProps = (state) => {
         isLoggedIn: state.isLoggedIn,
         authIsLoading: state.authIsLoading,
         drawerIsActive: state.drawerIsActive
-    };
-};
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         checkAuthorised: () => dispatch(checkLoggedIn()),
         handleDrawerToggle: (toggleState) => dispatch(checkDrawerIsActive(!toggleState))
-    };
-};
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks)
