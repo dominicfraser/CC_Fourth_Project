@@ -1,10 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
 
+import { connect } from 'react-redux'
 
 class Leaderboard extends React.Component {
   constructor(props){
@@ -121,7 +121,6 @@ const mapStateToProps = (state) => {
         drawerIsActive: state.drawerIsActive
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {}
 }

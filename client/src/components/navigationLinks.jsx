@@ -66,7 +66,6 @@ const mapStateToProps = (state) => {
         drawerIsActive: state.drawerIsActive
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         checkAuthorised: () => dispatch(checkLoggedIn()),

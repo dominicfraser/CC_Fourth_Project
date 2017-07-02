@@ -2,6 +2,10 @@ import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
+import ProgressBar from 'react-toolbox/lib/progress_bar'
+
+import { connect } from 'react-redux'
+import { isLoggedIn } from '../actions/actionCreators'
 
 class Login extends React.Component {
   constructor(props){
@@ -9,7 +13,6 @@ class Login extends React.Component {
     this.state = {
       u_name: "",
       password: "",
-      attemptingLogin: false
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
@@ -19,14 +22,8 @@ class Login extends React.Component {
   }
 
   render(){
-    let spinner = <p></p>
-    if(this.state.attemptingLogin){
-      spinner = <p>spinner</p>
-    }
-
     return (
       <form>
-        {spinner}
         <Input type='text' label='Username: Email' name='u-name' value={this.state.u_name} onChange={this.handleUsernameChange} required/>
 
         <Input type='text' label='Password' name='password' value={this.state.password} onChange={this.handlePasswordChange} required/>
@@ -46,16 +43,11 @@ class Login extends React.Component {
   }
 
   loginButton(){
-    this.setState({ attemptingLogin: true })
-
     this.apiCommunicatorHelper.logIn((submittedDetails) => {
-console.log('log in callback return login', submittedDetails)
-      this.props.propHistory.push('/')
-      this.setState({ attemptingLogin: false })
-
+        this.props.isLoggedInTrue()
+        this.props.propHistory.push('/')
     }, (err) => {
-      this.setState({ attemptingLogin: false })
-
+        this.props.isLoggedInFalse()
     }, JSON.stringify({
       u_name: this.state.u_name,
       password: this.state.password
@@ -64,4 +56,18 @@ console.log('log in callback return login', submittedDetails)
 
 }
 
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        authIsLoading: state.authIsLoading,
+        drawerIsActive: state.drawerIsActive
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isLoggedInTrue: () => dispatch(isLoggedIn(true)),
+        isLoggedInFalse: () => dispatch(isLoggedIn(false))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
