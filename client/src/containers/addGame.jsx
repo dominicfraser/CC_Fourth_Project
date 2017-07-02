@@ -5,9 +5,6 @@ import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
 
-import { Redirect } from 'react-router'
-
-
 class AddGame extends React.Component {
   constructor(props){
     super(props)
@@ -35,20 +32,20 @@ class AddGame extends React.Component {
     this.submitGameButton = this.submitGameButton.bind(this)
   }
 
+  componentWillMount(){
+    if(!this.props.isLoggedIn){
+      this.props.history.push('/login')
+    } 
+  }
+
   render(){
 console.log('render in addGame')
     const locationNames = this.findAllLocationNames()
     const playerNames = this.findAllPlayerNames()
 
-    let redirect = <p></p>
-    if(!this.props.isLoggedIn){
-      redirect = <Redirect to="/login"/>
-    } //produces warning but works
-
     return (
       <form ref='AddGame'>
           <NavigationLinks appBarTitle='Add New Game' />
-          {redirect}
 
 <div className='div50per'>
         <Autocomplete

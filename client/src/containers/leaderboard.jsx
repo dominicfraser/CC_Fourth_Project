@@ -30,10 +30,7 @@ class Leaderboard extends React.Component {
           key={index}
           avatar='./public/img/ic_account_circle_white_24px.svg'
           caption={player.p_name}
-          // leftActions={[<p key={0}>{player.win_ratio_ratio()}</p>]}
           rightActions={[<p key={0}>Total Wins: {player.wins}</p>]}
-          // legend={player.id}
-          // rightIcon='star'
         />
       )
     })
