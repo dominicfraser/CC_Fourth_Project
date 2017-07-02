@@ -17,7 +17,7 @@ class LoginPage extends React.Component {
 
     let login = <p></p>
     if(!this.props.isLoggedIn){
-      login = <Login />
+      login = <Login propHistory={this.props.history}/>
     }
     let logout = <Logout />
     if(!this.props.isLoggedIn){

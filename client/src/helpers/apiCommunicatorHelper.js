@@ -9,9 +9,11 @@ class ApiCommunicatorHelper {
   }
 
 //LOGIN
-  logIn(callback, options){
+  logIn(callback, errorCallback, options){
     this.apiRequestHelper.makePostRequest("http://localhost:3000/api/auth/loginuser", (results) => {
       callback(results)
+    }, (err) => {
+      errorCallback(err)
     }, options)
   }
   logOut(){
