@@ -32,13 +32,19 @@ class AddGame extends React.Component {
     this.submitGameButton = this.submitGameButton.bind(this)
   }
 
-  render(){
+  componentWillMount(){
+    if(!this.props.isLoggedIn){
+      this.props.history.push('/login')
+    } 
+  }
 
+  render(){
+console.log('render in addGame')
     const locationNames = this.findAllLocationNames()
     const playerNames = this.findAllPlayerNames()
 
     return (
-      <form>
+      <form ref='AddGame'>
           <NavigationLinks appBarTitle='Add New Game' />
 
 <div className='div50per'>

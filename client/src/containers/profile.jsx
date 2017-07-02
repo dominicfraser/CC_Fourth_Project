@@ -11,8 +11,14 @@ class Profile extends React.Component {
     this.state = {}
   }
 
-  render() {
+  componentWillMount(){
+    if(!this.props.isLoggedIn){
+      this.props.history.push('/login')
+    }
+  }
 
+  render() {
+    
     return (
         <div>
           <NavigationLinks appBarTitle='Profile'/>

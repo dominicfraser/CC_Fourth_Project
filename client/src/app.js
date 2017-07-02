@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { HashRouter, Route } from 'react-router-dom'
+import { browserHistory } from 'react-router'
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore'
 import Leaderboard from './containers/leaderboard'
@@ -16,7 +17,7 @@ window.addEventListener('load', () => {
   render(
     <Provider store={store}>
 
-      <HashRouter>
+      <HashRouter history={browserHistory} >
         <div>
           <Route path='/main' component={Leaderboard} />
           <Route exact path='/' component={Leaderboard} />

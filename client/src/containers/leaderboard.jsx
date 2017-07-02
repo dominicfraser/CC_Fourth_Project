@@ -4,6 +4,7 @@ import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
 
+import { connect } from 'react-redux'
 
 class Leaderboard extends React.Component {
   constructor(props){
@@ -20,6 +21,8 @@ class Leaderboard extends React.Component {
   }
 
   render(){
+// console.log('this.props.authIsLoading in leaderboard render', this.props.authIsLoading)
+//CREATE AMOUNT WINS SORT
     const playerListItemsSortedAmountWins = this.state.allPlayers.sort(this.sortByAmountWins)
     const playerListItemsAmountWins = playerListItemsSortedAmountWins.map((player, index) => {
       return ( 
@@ -27,14 +30,11 @@ class Leaderboard extends React.Component {
           key={index}
           avatar='./public/img/ic_account_circle_white_24px.svg'
           caption={player.p_name}
-          // leftActions={[<p key={0}>{player.win_ratio_ratio()}</p>]}
           rightActions={[<p key={0}>Total Wins: {player.wins}</p>]}
-          // legend={player.id}
-          // rightIcon='star'
         />
       )
     })
-
+//CREATE WIN/LOSS SORT
     const playerListItemsSortedRatioPercent = this.state.allPlayers.sort(this.sortByWinRatioPercentage)
     const playerListItemsWinLoss = playerListItemsSortedRatioPercent.map((player, index) => {
       return ( 
@@ -47,10 +47,16 @@ class Leaderboard extends React.Component {
       )
     })
 
+//AUTH IS STILL LOADING PLACEHOLDER
+let placeholder = <div></div>
+if(this.props.authIsLoading){
+  placeholder = <div>is loading</div>
+}
+
     return (
       <div>
         <NavigationLinks appBarTitle='Leaderboard' />
-
+        {placeholder}
 
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Wins'>
@@ -108,4 +114,16 @@ class Leaderboard extends React.Component {
 
 }
 
-export default Leaderboard
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        authIsLoading: state.authIsLoading,
+        drawerIsActive: state.drawerIsActive
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Leaderboard)

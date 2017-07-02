@@ -27,7 +27,3 @@ export function drawerIsActive(state = false, action) {
             return state
     }
 }
-
-// Object.assign({}, state, {
-//                 drawerIsActive: !state.drawerIsActive
-//             }) 
