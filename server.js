@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const jwt    = require('jsonwebtoken')
 const config = require('./config')
 const verifyToken = require('./auth/verifyToken')(config.secret)
@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 app.use(allRoutes)
 app.use(express.static('client/build'))
 
-app.use(morgan('dev'))
+// app.use(morgan('dev'))
 
 const server = app.listen(3000, function () {
   const host = server.address().address
