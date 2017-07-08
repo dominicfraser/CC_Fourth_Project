@@ -1,0 +1,21 @@
+server:
+  image: node:7
+  command: npm start
+  working_dir: /app
+  volumes:
+    - .:/app
+  environment:
+    PORT: 3000
+
+  ports:
+    - "3000:3000"
+  links:
+      - db
+db:
+  image: postgres
+  expose:
+    - 5432
+  environment:
+    POSTGRES_PASSWORD: password
+    POSTGRES_USER: user
+    POSTGRES_DB: db
