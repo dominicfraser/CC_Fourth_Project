@@ -22,6 +22,3 @@ db:
     POSTGRES_PASSWORD: password
     POSTGRES_USER: user
     POSTGRES_DB: react_table_tennis
-
-
-
