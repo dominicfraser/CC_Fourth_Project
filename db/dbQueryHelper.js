@@ -10,9 +10,9 @@ class dbQueryHelper {
 
     const u_name = req.body.u_name
     const password = req.body.password
-    const passwordHashed = sha512(password)
+    // const passwordHashed = sha512(password)
 
-    db.query(sql, [u_name, passwordHashed])
+    db.query(sql, [u_name, password])
       .then(user => user[0])
       .then(signTokenResponse)
       .catch(next) 

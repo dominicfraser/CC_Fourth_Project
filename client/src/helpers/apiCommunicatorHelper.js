@@ -19,9 +19,11 @@ class ApiCommunicatorHelper {
   logOut(){
     this.apiRequestHelper.makeLogOutDeleteRequest("http://localhost:3000/api/auth/logoutuser")
   }
-  createAccount(callback, options){
+  createAccount(callback, errorCallback, options){
     this.apiRequestHelper.makePostRequest("http://localhost:3000/api/auth/adduser", (results) => {
       callback(results)
+    }, (err) => {
+      errorCallback(err)
     }, options)
   }
   checkLoggedIn(callback){
