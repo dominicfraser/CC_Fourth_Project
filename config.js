@@ -1,4 +1,4 @@
 module.exports = {
   'secret': 'catscatscats',
-  'database': 'postgres://user@localhost/react_table_tennis'  
+  'database': 'postgres://user:password@db:5432/react_table_tennis'  
 }

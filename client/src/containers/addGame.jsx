@@ -5,6 +5,8 @@ import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
 
+import { connect } from 'react-redux'
+
 class AddGame extends React.Component {
   constructor(props){
     super(props)
@@ -171,7 +173,17 @@ console.log('callback return', submittedGame)
     })
     return players
   }
-
 }
 
-export default AddGame 
+  const mapStateToProps = (state) => {
+      return {
+          isLoggedIn: state.isLoggedIn,
+          authIsLoading: state.authIsLoading,
+          drawerIsActive: state.drawerIsActive
+      }
+  }
+  const mapDispatchToProps = (dispatch) => {
+      return {}
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddGame)

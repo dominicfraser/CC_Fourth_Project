@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import NavigationLinks from '../components/navigationLinks'
 import Login from '../components/login'
@@ -14,19 +15,39 @@ class LoginPage extends React.Component {
 
   render(){
 
+    let login = <p></p>
+    if(!this.props.isLoggedIn){
+      login = <Login propHistory={this.props.history}/>
+    }
+    let logout = <Logout />
+    if(!this.props.isLoggedIn){
+      logout = <p></p>
+    }
+
     return (
       <div>
         <NavigationLinks appBarTitle='Table Tennis Tracker'/>
 
-        <Login />
-        <Logout />
+        {login}
+        {logout}
         <CreateAccount />
 
       </div>
     )
   }
 
-
 }
 
-export default LoginPage
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        authIsLoading: state.authIsLoading,
+        drawerIsActive: state.drawerIsActive
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

@@ -2,13 +2,17 @@ import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
+import ProgressBar from 'react-toolbox/lib/progress_bar'
+
+import { connect } from 'react-redux'
+import { isLoggedIn } from '../actions/actionCreators'
 
 class Login extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       u_name: "",
-      password: ""
+      password: "",
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
@@ -20,12 +24,11 @@ class Login extends React.Component {
   render(){
     return (
       <form>
-
         <Input type='text' label='Username: Email' name='u-name' value={this.state.u_name} onChange={this.handleUsernameChange} required/>
 
         <Input type='text' label='Password' name='password' value={this.state.password} onChange={this.handlePasswordChange} required/>
 
-        <Button label='Log In' href='/#/' onClick={this.loginButton} raised primary />
+        <Button label='Log In' onClick={this.loginButton} raised primary />
 
       </form>
     )
@@ -41,7 +44,10 @@ class Login extends React.Component {
 
   loginButton(){
     this.apiCommunicatorHelper.logIn((submittedDetails) => {
-console.log('log in callback return login', submittedDetails)
+        this.props.isLoggedInTrue()
+        this.props.propHistory.push('/')
+    }, (err) => {
+        this.props.isLoggedInFalse()
     }, JSON.stringify({
       u_name: this.state.u_name,
       password: this.state.password
@@ -50,4 +56,18 @@ console.log('log in callback return login', submittedDetails)
 
 }
 
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        authIsLoading: state.authIsLoading,
+        drawerIsActive: state.drawerIsActive
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isLoggedInTrue: () => dispatch(isLoggedIn(true)),
+        isLoggedInFalse: () => dispatch(isLoggedIn(false))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

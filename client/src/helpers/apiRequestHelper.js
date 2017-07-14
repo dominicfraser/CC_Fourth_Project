@@ -55,17 +55,39 @@ class ApiRequestHelper {
     request.send()
   }
 
-  makePostRequest(url, callback, payload){
+  makePostRequest(url, callback, errorCallback, payload){
     const request = new XMLHttpRequest()
     request.open('POST', url)
     request.setRequestHeader('Content-Type', 'application/json')
     request.addEventListener('load', function () {
-      if (request.status !== 200) return
+      if (request.status !== 200){
+        if(errorCallback) {
+          errorCallback(request)
+        }
+      } else {
       const jsonString = request.responseText
       const resultsObject = JSON.parse(jsonString)
       callback(resultsObject)
+      }
     })
     request.send(payload)
+  }
+
+  makeGetRequestHandleError(url, callback, errorCallback){
+    const request = new XMLHttpRequest()
+    request.open('GET', url)
+    request.addEventListener('load', function () {
+      if (request.status !== 200){
+        if(errorCallback) {
+          errorCallback(request)
+        }
+      } else {
+        const jsonString = request.responseText
+        const resultsObject = JSON.parse(jsonString)
+        callback(resultsObject) 
+      }
+    })
+    request.send()
   }
 
 }
