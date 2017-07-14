@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha client/src/models/specs",
-    "start": "nodemon server.js",
+    "start": "nodemon server.js & npm run webpack",
     "webpack": "cd client && webpack -w"
   },
   "keywords": [],

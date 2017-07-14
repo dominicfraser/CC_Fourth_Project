@@ -7,12 +7,11 @@ class dbQueryHelper {
 //USERS
   addUser(req, res, signTokenResponse, next){
     const sql = "INSERT INTO users (u_name, password) VALUES ($1, $2) RETURNING *"
-
     const u_name = req.body.u_name
     const password = req.body.password
-    // const passwordHashed = sha512(password)
+    const passwordHashed = sha512(password)
 
-    db.query(sql, [u_name, password])
+    db.query(sql, [u_name, passwordHashed])
       .then(user => user[0])
       .then(signTokenResponse)
       .catch(next) 

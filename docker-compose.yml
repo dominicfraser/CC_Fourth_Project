@@ -1,6 +1,6 @@
 server:
   image: node:7
-  command: npm start
+  command: npm start 
   working_dir: /app
   volumes:
     - .:/app
