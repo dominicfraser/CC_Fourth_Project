@@ -33,11 +33,6 @@ class AddGame extends React.Component {
     this.submitGameButton = this.submitGameButton.bind(this)
   }
 
-  componentWillMount(){
-    if(!this.props.isLoggedIn){
-      this.props.history.push('/login')
-    } 
-  }
 
   render(){
 console.log('render in addGame')
@@ -174,11 +169,7 @@ console.log('callback return', submittedGame)
 }
 
   const mapStateToProps = (state) => {
-      return {
-          isLoggedIn: state.isLoggedIn,
-          authIsLoading: state.authIsLoading,
-          drawerIsActive: state.drawerIsActive
-      }
+      return {}
   }
   const mapDispatchToProps = (dispatch) => {
       return {}

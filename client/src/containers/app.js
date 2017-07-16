@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Route } from 'react-router-dom'
+import { HashRouter, Route, Redirect } from 'react-router-dom'
 import { browserHistory } from 'react-router'
 
 import NavigationLinks from '../components/navigationLinks'
@@ -16,6 +16,15 @@ import { checkLoggedIn, checkDrawerIsActive } from '../actions/actionCreators'
 class App extends React.Component {
 
   render(){
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route {...rest} render={routeProps => (
+          this.props.isLoggedIn ? ( 
+              <Component {...routeProps}/> 
+            ) : (
+              <Redirect to='/login'/>
+            ) 
+        )}/> 
+      )
 
     return(
         <HashRouter history={browserHistory} >
@@ -24,30 +33,28 @@ class App extends React.Component {
 
             <Route path='/main' component={Leaderboard} />
             <Route exact path='/' component={Leaderboard} />
-            <Route path='/addGame' component={AddGame} />
-            <Route path='/profile' component={Profile} />
+            <PrivateRoute path='/addGame' component={AddGame} />
+            <PrivateRoute path='/profile' component={Profile} />
             <Route path='/login' component={LoginPage} />
           </div>
         </HashRouter>
       )
-
   }
-
 }
+
 
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
         authIsLoading: state.authIsLoading,
-        drawerIsActive: state.drawerIsActive
+        // drawerIsActive: state.drawerIsActive
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        checkAuthorised: () => dispatch(checkLoggedIn()),
-        handleDrawerToggle: (toggleState) => dispatch(checkDrawerIsActive(!toggleState))
+        // checkAuthorised: () => dispatch(checkLoggedIn()),
+        // handleDrawerToggle: (toggleState) => dispatch(checkDrawerIsActive(!toggleState))
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

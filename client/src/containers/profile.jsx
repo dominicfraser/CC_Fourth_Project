@@ -12,11 +12,6 @@ class Profile extends React.Component {
     this.state = {}
   }
 
-  componentWillMount(){
-    if(!this.props.isLoggedIn){
-      this.props.history.push('/login')
-    }
-  }
 
   render() {
     
@@ -31,11 +26,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.isLoggedIn,
-        authIsLoading: state.authIsLoading,
-        drawerIsActive: state.drawerIsActive
-    }
+    return {}
 }
 const mapDispatchToProps = (dispatch) => {
     return {}
