@@ -9,22 +9,34 @@ class ApiCommunicatorHelper {
   }
 
 //LOGIN
-  logIn(callback, options){
+  logIn(callback, errorCallback, options){
     this.apiRequestHelper.makePostRequest("http://localhost:3000/api/auth/loginuser", (results) => {
       callback(results)
+    }, (err) => {
+      errorCallback(err)
     }, options)
   }
   logOut(){
     this.apiRequestHelper.makeLogOutDeleteRequest("http://localhost:3000/api/auth/logoutuser")
   }
-  createAccount(callback, options){
+  createAccount(callback, errorCallback, options){
     this.apiRequestHelper.makePostRequest("http://localhost:3000/api/auth/adduser", (results) => {
       callback(results)
+    }, (err) => {
+      errorCallback(err)
     }, options)
   }
   checkLoggedIn(callback){
     this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/auth/checker", (result) => {
       callback(result)
+    })
+  }
+
+  checkLoggedInHandleError(callback, errorCallback){
+    this.apiRequestHelper.makeGetRequestHandleError("http://localhost:3000/api/auth/checker", (result) => {
+      callback(result)
+    }, (err) => {
+      errorCallback(err)
     })
   }
 

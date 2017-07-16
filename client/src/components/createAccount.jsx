@@ -41,8 +41,10 @@ class CreateAccount extends React.Component {
 
   createAccountButton(){
     this.apiCommunicatorHelper.createAccount((submittedDetails) =>{
-  console.log('createAccount button callback return login', submittedDetails)
-    }, JSON.stringify({
+console.log('createAccount button callback return login', submittedDetails)
+      }, (err) => {
+console.log('err createAccountButton')
+      }, JSON.stringify({
         u_name: this.state.u_name,
         password: this.state.password
     }))

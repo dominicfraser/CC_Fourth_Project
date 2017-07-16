@@ -5,6 +5,8 @@ import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
 
+import { connect } from 'react-redux'
+
 class AddGame extends React.Component {
   constructor(props){
     super(props)
@@ -32,13 +34,19 @@ class AddGame extends React.Component {
     this.submitGameButton = this.submitGameButton.bind(this)
   }
 
-  render(){
+  componentWillMount(){
+    if(!this.props.isLoggedIn){
+      this.props.history.push('/login')
+    } 
+  }
 
+  render(){
+console.log('render in addGame')
     const locationNames = this.findAllLocationNames()
     const playerNames = this.findAllPlayerNames()
 
     return (
-      <form>
+      <form ref='AddGame'>
           <NavigationLinks appBarTitle='Add New Game' />
 
 <div className='div50per'>
@@ -165,7 +173,17 @@ console.log('callback return', submittedGame)
     })
     return players
   }
-
 }
 
-export default AddGame 
+  const mapStateToProps = (state) => {
+      return {
+          isLoggedIn: state.isLoggedIn,
+          authIsLoading: state.authIsLoading,
+          drawerIsActive: state.drawerIsActive
+      }
+  }
+  const mapDispatchToProps = (dispatch) => {
+      return {}
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddGame)
