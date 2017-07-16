@@ -6,20 +6,33 @@ export function authIsLoading(bool) {
     return {
         type: 'AUTH_IS_LOADING',
         authIsLoading: bool
-    };
+    }
 }
 
 export function isLoggedIn(bool) {
     return {
         type: 'USER_IS_AUTHORISED',
         isLoggedIn: bool
-    };
+    }
+}
+
+export function loginUName(u_name) {
+    return {
+        type: 'LOGIN_U_NAME',
+        loginUName: u_name
+    }
+}
+
+export function loginPassword(password) {
+    return {
+        type: 'LOGIN_PASSWORD',
+        loginPassword: password
+    }
 }
 
 export function checkLoggedIn() {
     return (dispatch) => {
         dispatch(authIsLoading(true))
-// console.log('in actionCreators')
     apiCommunicatorHelper.checkLoggedInHandleError((check) => {
 console.log('in checkLoggedIn saying user is logged in')
 console.log('check return value', check)

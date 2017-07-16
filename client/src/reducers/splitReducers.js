@@ -18,6 +18,26 @@ export function isLoggedIn(state = false, action) {
     }
 }
 
+export function loginUName(state = "", action) {
+    switch (action.type) {
+        case 'LOGIN_U_NAME':
+            return action.loginUName
+
+        default:
+            return state
+    }
+}
+
+export function loginPassword(state = "", action) {
+    switch (action.type) {
+        case 'LOGIN_PASSWORD':
+            return action.loginPassword
+
+        default:
+            return state
+    }
+}
+
 export function drawerIsActive(state = false, action) {
     switch (action.type) {
         case 'DRAWER_IS_ACTIVE':
