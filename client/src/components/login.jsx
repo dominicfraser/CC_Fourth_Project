@@ -59,8 +59,6 @@ class Login extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
-        authIsLoading: state.authIsLoading,
-        drawerIsActive: state.drawerIsActive
     }
 }
 const mapDispatchToProps = (dispatch) => {
