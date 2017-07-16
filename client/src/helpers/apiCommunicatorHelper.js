@@ -63,10 +63,12 @@ class ApiCommunicatorHelper {
   }
 
 //GAMES
-  addGame(callback, options){
+  addGame(callback, errorCallback, options){
     this.apiRequestHelper.makePostRequest("http://localhost:3000/api/games", (results) => {
       const game = new GameModel(results)
       callback(game)
+    }, (err) => {
+      errorCallback(err)
     }, options)
   }
 

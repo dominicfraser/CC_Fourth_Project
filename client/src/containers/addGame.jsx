@@ -96,6 +96,8 @@ console.log('render in addGame')
   submitGameButton(){
     this.apiCommunicatorHelper.addGame((submittedGame) => {
 console.log('callback return', submittedGame)
+    }, (err) => {
+console.log('err submitGameButton')
     }, JSON.stringify({ 
       p1_id: this.state.selectedPlayer1.id, 
       p2_id: this.state.selectedPlayer2.id, 
