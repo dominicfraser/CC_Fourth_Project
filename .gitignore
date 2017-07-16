@@ -3,4 +3,4 @@ bundle.js
 bundle.js.map
 npm-debug.log
 notes
-package-lock-json
+package-lock.json
