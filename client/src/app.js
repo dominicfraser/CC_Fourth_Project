@@ -4,6 +4,9 @@ import { HashRouter, Route } from 'react-router-dom'
 import { browserHistory } from 'react-router'
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore'
+
+import NavigationLinks from './components/navigationLinks'
+
 import Leaderboard from './containers/leaderboard'
 import AddGame from './containers/addGame'
 import Profile from './containers/profile'
@@ -19,15 +22,15 @@ window.addEventListener('load', () => {
 
       <HashRouter history={browserHistory} >
         <div>
+          <NavigationLinks appBarTitle='' />
+
           <Route path='/main' component={Leaderboard} />
           <Route exact path='/' component={Leaderboard} />
           <Route path='/addGame' component={AddGame} />
           <Route path='/profile' component={Profile} />
           <Route path='/login' component={LoginPage} />
-
         </div>
       </HashRouter>
 
     </Provider>, targetDiv)
 })
-

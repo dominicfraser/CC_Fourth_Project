@@ -12,11 +12,9 @@ import { checkLoggedIn, checkDrawerIsActive } from '../actions/actionCreators'
 class NavigationLinks extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-    }
+    this.state = {}
 
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
-
   }
 
   componentDidMount(){

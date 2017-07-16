@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
@@ -47,7 +46,6 @@ console.log('render in addGame')
 
     return (
       <form ref='AddGame'>
-          <NavigationLinks appBarTitle='Add New Game' />
 
 <div className='div50per'>
         <Autocomplete

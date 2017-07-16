@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 
 import { connect } from 'react-redux'
 
@@ -23,7 +22,6 @@ class Profile extends React.Component {
     
     return (
         <div>
-          <NavigationLinks appBarTitle='Profile'/>
 
           <p> Under Construction </p>
         </div>

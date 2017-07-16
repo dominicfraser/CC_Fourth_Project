@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
 
@@ -55,7 +54,6 @@ if(this.props.authIsLoading){
 
     return (
       <div>
-        <NavigationLinks appBarTitle='Leaderboard' />
         {placeholder}
 
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
