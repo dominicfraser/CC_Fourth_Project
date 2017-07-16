@@ -13,5 +13,4 @@ groupsRouter.get('/:id', query.findGroupById)
 
 groupsRouter.patch('/:id', query.updateGroup)
 
-
 module.exports = groupsRouter

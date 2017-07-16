@@ -18,5 +18,4 @@ playersRouter.get('/:id/withstats', query.findPlayerWithStats)
 
 playersRouter.patch('/:id', query.updatePlayer)
 
-
 module.exports = playersRouter
