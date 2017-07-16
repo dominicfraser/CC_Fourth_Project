@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 
 import { connect } from 'react-redux'
 
@@ -13,17 +12,11 @@ class Profile extends React.Component {
     this.state = {}
   }
 
-  componentWillMount(){
-    if(!this.props.isLoggedIn){
-      this.props.history.push('/login')
-    }
-  }
 
   render() {
     
     return (
         <div>
-          <NavigationLinks appBarTitle='Profile'/>
 
           <p> Under Construction </p>
         </div>
@@ -33,11 +26,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.isLoggedIn,
-        authIsLoading: state.authIsLoading,
-        drawerIsActive: state.drawerIsActive
-    }
+    return {}
 }
 const mapDispatchToProps = (dispatch) => {
     return {}

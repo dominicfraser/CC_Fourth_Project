@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 import {Tab, Tabs} from 'react-toolbox'
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
 
@@ -21,7 +20,6 @@ class Leaderboard extends React.Component {
   }
 
   render(){
-// console.log('this.props.authIsLoading in leaderboard render', this.props.authIsLoading)
 //CREATE AMOUNT WINS SORT
     const playerListItemsSortedAmountWins = this.state.allPlayers.sort(this.sortByAmountWins)
     const playerListItemsAmountWins = playerListItemsSortedAmountWins.map((player, index) => {
@@ -47,16 +45,9 @@ class Leaderboard extends React.Component {
       )
     })
 
-//AUTH IS STILL LOADING PLACEHOLDER
-let placeholder = <div></div>
-if(this.props.authIsLoading){
-  placeholder = <div>is loading</div>
-}
 
     return (
       <div>
-        <NavigationLinks appBarTitle='Leaderboard' />
-        {placeholder}
 
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Wins'>
@@ -87,9 +78,6 @@ if(this.props.authIsLoading){
 
   }
 
-  componentDidMount(){
-  }
-
   handleFixedTabChange(index){
     this.setState({fixedIndex: index});
   }
@@ -115,11 +103,7 @@ if(this.props.authIsLoading){
 }
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.isLoggedIn,
-        authIsLoading: state.authIsLoading,
-        drawerIsActive: state.drawerIsActive
-    }
+    return {}
 }
 const mapDispatchToProps = (dispatch) => {
     return {}

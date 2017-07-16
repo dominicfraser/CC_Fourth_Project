@@ -2,6 +2,9 @@ import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
 import Button from 'react-toolbox/lib/button'
 
+import { connect } from 'react-redux'
+import { isLoggedIn } from '../actions/actionCreators'
+
 class Logout extends React.Component {
   constructor(props){
     super(props)
@@ -19,7 +22,19 @@ class Logout extends React.Component {
 
   logoutButton(){
     this.apiCommunicatorHelper.logOut()
+    this.props.isLoggedInFalse()
   }
 }
 
-export default Logout
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isLoggedInFalse: () => dispatch(isLoggedIn(false))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logout)

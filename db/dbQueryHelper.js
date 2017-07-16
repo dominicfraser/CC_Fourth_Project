@@ -284,7 +284,7 @@ updatePlayer(req, res, next){
   }
   addGame(req, res, next){
     const sql1 = "INSERT INTO games (p1_id, p2_id, p1_score, p2_score, location_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
-
+    
     const p1_id = req.body.p1_id
     const p2_id = req.body.p2_id
     const p1_score = req.body.p1_score

@@ -1,6 +1,5 @@
 import React from 'react'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Input from 'react-toolbox/lib/input'
 import Button from 'react-toolbox/lib/button'
@@ -34,11 +33,6 @@ class AddGame extends React.Component {
     this.submitGameButton = this.submitGameButton.bind(this)
   }
 
-  componentWillMount(){
-    if(!this.props.isLoggedIn){
-      this.props.history.push('/login')
-    } 
-  }
 
   render(){
 console.log('render in addGame')
@@ -47,7 +41,6 @@ console.log('render in addGame')
 
     return (
       <form ref='AddGame'>
-          <NavigationLinks appBarTitle='Add New Game' />
 
 <div className='div50per'>
         <Autocomplete
@@ -103,6 +96,8 @@ console.log('render in addGame')
   submitGameButton(){
     this.apiCommunicatorHelper.addGame((submittedGame) => {
 console.log('callback return', submittedGame)
+    }, (err) => {
+console.log('err submitGameButton')
     }, JSON.stringify({ 
       p1_id: this.state.selectedPlayer1.id, 
       p2_id: this.state.selectedPlayer2.id, 
@@ -176,11 +171,7 @@ console.log('callback return', submittedGame)
 }
 
   const mapStateToProps = (state) => {
-      return {
-          isLoggedIn: state.isLoggedIn,
-          authIsLoading: state.authIsLoading,
-          drawerIsActive: state.drawerIsActive
-      }
+      return {}
   }
   const mapDispatchToProps = (dispatch) => {
       return {}

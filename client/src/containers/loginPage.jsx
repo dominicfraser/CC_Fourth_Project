@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ApiCommunicatorHelper from '../helpers/apiCommunicatorHelper'
-import NavigationLinks from '../components/navigationLinks'
 import Login from '../components/login'
 import Logout from '../components/logout'
 import CreateAccount from '../components/createAccount'
@@ -26,7 +25,6 @@ class LoginPage extends React.Component {
 
     return (
       <div>
-        <NavigationLinks appBarTitle='Table Tennis Tracker'/>
 
         {login}
         {logout}
