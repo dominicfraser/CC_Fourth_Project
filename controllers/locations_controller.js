@@ -13,5 +13,4 @@ locationsRouter.get('/:id', query.findLocationById)
 
 locationsRouter.patch('/:id', query.updateLocation)
 
-
 module.exports = locationsRouter

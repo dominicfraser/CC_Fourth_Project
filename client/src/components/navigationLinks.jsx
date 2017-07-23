@@ -15,10 +15,8 @@ class NavigationLinks extends React.Component {
   }
 
   componentDidMount(){
-// console.log('props in navigationLinks', this.props)
     // this.props.checkAuthorised("http://localhost:3000/api/auth/checker")
   }
-
 
   render(){
 console.log('this.props.isLoggedIn', this.props.isLoggedIn)
@@ -27,7 +25,6 @@ console.log('this.props.isLoggedIn', this.props.isLoggedIn)
 
     return (
       <div>
-      
         <AppBar title={this.props.appBarTitle} leftIcon='menu' onLeftIconClick={() => this.props.handleDrawerToggle(this.props.drawerIsActive)} >
           <Navigation type='horizontal'>
             <Link href='/#/login' icon='vpn_key' />
@@ -45,7 +42,6 @@ console.log('this.props.isLoggedIn', this.props.isLoggedIn)
       </div>
     )
   }
-
 
 }
 
