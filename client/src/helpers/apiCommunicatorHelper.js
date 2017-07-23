@@ -1,5 +1,7 @@
 import ApiRequestHelper from './apiRequestHelper'
 import LocationModel from '../models/LocationModel'
+import OrganisationModel from '../models/OrganisationModel'
+import GroupModel from '../models/GroupModel'
 import PlayerModel from '../models/PlayerModel'
 import GameModel from '../models/GameModel'
 
@@ -62,6 +64,22 @@ class ApiCommunicatorHelper {
     })
   }
 
+//ORGANISATIONS
+  allOrganisations(callback){
+    this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/organisations", (results) => {
+      const organisations = this.populateOrganisations(results)
+      callback(organisations)
+    })
+  }
+
+//GROUPS
+  allGroups(callback){
+    this.apiRequestHelper.makeGetRequest("http://localhost:3000/api/groups", (results) => {
+      const groups = this.populateGroups(results)
+      callback(groups)
+    })
+  }
+
 //GAMES
   addGame(callback, errorCallback, options){
     this.apiRequestHelper.makePostRequest("http://localhost:3000/api/games", (results) => {
@@ -84,6 +102,18 @@ populatePlayers(results){
     return new PlayerModel(resultObject)
   })
   return players
+}
+populateOrganisations(results){
+  const organisations = results.map((resultObject) => {
+    return new OrganisationModel(resultObject)
+  })
+  return organisations
+}
+populateGroups(results){
+  const groups = results.map((resultObject) => {
+    return new GroupModel(resultObject)
+  })
+  return groups
 }
 
 

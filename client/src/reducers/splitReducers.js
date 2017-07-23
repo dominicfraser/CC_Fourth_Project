@@ -61,6 +61,51 @@ export function createPassword(state = "", action) {
     }
 }
 
+export function createSelectedPrimaryOrg(state = "", action) {
+    switch (action.type) {
+        case 'CREATE_SELECTED_PRIMARY_ORG':
+            return action.createSelectedPrimaryOrg
+        default:
+            return state
+    }
+}
+
+export function createSelectedPrimaryGroup(state = "", action) {
+    switch (action.type) {
+        case 'CREATE_SELECTED_PRIMARY_GROUP':
+            return action.createSelectedPrimaryGroup
+        default:
+            return state
+    }
+}
+
+export function allOrganisations(state = "", action) {
+    switch (action.type) {
+        case 'All_ORGANISATIONS':
+            return action.allOrganisations
+        default:
+            return state
+    }
+}
+
+export function allOrganisationsNames(state = "", action) {
+    switch (action.type) {
+        case 'All_ORGANISATIONS_NAMES':
+            return action.allOrganisationsNames
+        default:
+            return state
+    }
+}
+
+export function allGroups(state = "", action) {
+    switch (action.type) {
+        case 'All_GROUPS':
+            return action.allGroups
+        default:
+            return state
+    }
+}
+
 export function drawerIsActive(state = false, action) {
     switch (action.type) {
         case 'DRAWER_IS_ACTIVE':
