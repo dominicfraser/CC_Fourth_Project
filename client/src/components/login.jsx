@@ -21,7 +21,7 @@ class Login extends React.Component {
   render(){
     return (
       <form>
-        <Input type='text' label='Username: Email' name='u-name' value={this.props.loginUName} onChange={this.handleUsernameChange} required/>
+        <Input type='text' label='Username' name='u-name' value={this.props.loginUName} onChange={this.handleUsernameChange} required/>
 
         <Input type='text' label='Password' name='password' value={this.props.loginPassword} onChange={this.handlePasswordChange} required/>
 

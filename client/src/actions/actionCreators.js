@@ -30,6 +30,27 @@ export function loginPassword(password) {
     }
 }
 
+export function createEmail(email) {
+    return {
+        type: 'CREATE_EMAIL',
+        createEmail: email
+    }
+}
+
+export function createPName(p_name) {
+    return {
+        type: 'CREATE_PNAME',
+        createPName: p_name
+    }
+}
+
+export function createPassword(password) {
+    return {
+        type: 'CREATE_PASSWORD',
+        createPassword: password
+    }
+}
+
 export function checkLoggedIn() {
     return (dispatch) => {
         dispatch(authIsLoading(true))
