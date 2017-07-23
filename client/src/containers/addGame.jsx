@@ -158,7 +158,7 @@ console.log('err submitGameButton')
   }
 
   findAllPlayers(){
-    this.apiCommunicatorHelper.allPlayersWithStats((players) => {
+    this.apiCommunicatorHelper.allPlayers((players) => {
       this.setState({ players: players })
     })
   }
