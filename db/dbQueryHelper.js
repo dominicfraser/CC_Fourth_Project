@@ -6,7 +6,7 @@ const sha512 = require('js-sha512')
 class dbQueryHelper {
 //USERS
   addUser(req, res, signTokenResponse, next){
-    const sql = "INSERT INTO players (email, p_name, password, pimary_org_id, primary_group_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+    const sql = "INSERT INTO players (email, p_name, password, primary_org_id, primary_group_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
     const email = req.body.email
     const p_name = req.body.p_name
     const password = req.body.password
