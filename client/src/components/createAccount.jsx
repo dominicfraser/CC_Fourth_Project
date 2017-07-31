@@ -30,12 +30,12 @@ class CreateAccount extends React.Component {
 console.log('ORGNa', this.props.allOrganisationsNames.length > 0)
     let orgNames = []
     if(this.props.allOrganisationsNames.length > 0){
-      let orgNames = this.props.allOrganisationsNames
+      orgNames = this.props.allOrganisationsNames
 console.log('in IF orgNames', orgNames)
     }
+console.log('orgNames', orgNames)
 
     const groupNames = []
-console.log('orgNames', orgNames)
 
     return (
       <form>
@@ -50,9 +50,9 @@ console.log('orgNames', orgNames)
           label="Primary Organisation"
           hint="start typing for autocomplete"
           multiple={false}
-          // onChange={this.handlePrimaryOrgChange}
+          onChange={this.handlePrimaryOrgChange}
           source={orgNames}
-          // value={this.props.createSelectedPrimaryOrg.o_name}
+          value={this.props.createSelectedPrimaryOrg.o_name}
           showSuggestionsWhenValueIsSet={true}
           suggestionMatch="anywhere"
           required
@@ -131,7 +131,7 @@ const mapStateToProps = (state) => {
         createPName: state.createPName,
         createPassword: state.createPassword,
         createSelectedPrimaryOrg: state.createSelectedPrimaryOrg,
-        createPrimaryGroupId: state.createSelectedPrimaryGroup,
+        createSelectedPrimaryGroup: state.createSelectedPrimaryGroup,
         allOrganisations: state.allOrganisations,
         allGroups: state.allGroups,
         allOrganisationsNames: state.allOrganisationsNames,
