@@ -80,7 +80,12 @@ export function allGroups(groups) {
         allGroups: groups
     }
 }
-
+export function allGroupsNames(g_names) {
+    return {
+        type: 'All_GROUPS_NAMES',
+        allGroupsNames: g_names
+    }
+}
 
 export function checkLoggedIn() {
     return (dispatch) => {
@@ -117,6 +122,11 @@ export function findAllGroups(){
         apiCommunicatorHelper.allGroups((groups) => {
             dispatch(allGroups(groups))
             dispatch(createSelectedPrimaryGroup(groups[0]))
+            let g_names = []
+            groups.forEach((group) => {
+                g_names.push(group.g_name)
+            })
+            dispatch(allGroupsNames(g_names))
         })
     }
 }

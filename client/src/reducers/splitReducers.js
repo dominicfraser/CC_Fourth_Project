@@ -106,6 +106,15 @@ export function allGroups(state = "", action) {
     }
 }
 
+export function allGroupsNames(state = "", action) {
+    switch (action.type) {
+        case 'All_GROUPS_NAMES':
+            return action.allGroupsNames
+        default:
+            return state
+    }
+}
+
 export function drawerIsActive(state = false, action) {
     switch (action.type) {
         case 'DRAWER_IS_ACTIVE':

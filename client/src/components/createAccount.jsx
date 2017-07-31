@@ -5,7 +5,7 @@ import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Button from 'react-toolbox/lib/button'
 
 import { connect } from 'react-redux'
-import { createEmail, createPName, createPassword, createSelectedPrimaryOrg, createSelectedPrimaryGroup, findAllOrgs, findAllGroups, allOrganisations, allGroups, allOrganisationsNames } from '../actions/actionCreators'
+import { createEmail, createPName, createPassword, createSelectedPrimaryOrg, createSelectedPrimaryGroup, findAllOrgs, findAllGroups, allOrganisations, allGroups, allOrganisationsNames, allGroupsNames } from '../actions/actionCreators'
 
 class CreateAccount extends React.Component {
   constructor(props){
@@ -27,15 +27,15 @@ class CreateAccount extends React.Component {
   }
 
   render(){
-console.log('ORGNa', this.props.allOrganisationsNames.length > 0)
     let orgNames = []
     if(this.props.allOrganisationsNames.length > 0){
       orgNames = this.props.allOrganisationsNames
-console.log('in IF orgNames', orgNames)
     }
-console.log('orgNames', orgNames)
 
-    const groupNames = []
+    let groupNames = []
+    if(this.props.allGroupsNames.length > 0){
+      groupNames = this.props.allGroupsNames
+    }
 
     return (
       <form>
@@ -63,9 +63,9 @@ console.log('orgNames', orgNames)
           label="Primary Group"
           hint="start typing for autocomplete"
           multiple={false}
-     //   onChange={this.handlePrimaryGroupChange}
+          onChange={this.handlePrimaryGroupChange}
           source={groupNames}
-          // value={this.props.createSelectedPrimaryGroup.g_name}
+          value={this.props.createSelectedPrimaryGroup.g_name}
           showSuggestionsWhenValueIsSet={true}
           suggestionMatch="anywhere"
           required
@@ -107,7 +107,13 @@ console.log('orgNames', orgNames)
   }
 
   handlePrimaryGroupChange(value){
-    this.props.setCreateSelectedPrimaryGroup(value)
+    let groupObject = ""
+    this.props.allGroups.forEach((group) => {
+      if(group.g_name === value){
+        groupObject = group
+      }
+    })
+    this.props.setCreateSelectedPrimaryGroup(groupObject)
   }
 
   createAccountButton(){
@@ -135,6 +141,7 @@ const mapStateToProps = (state) => {
         allOrganisations: state.allOrganisations,
         allGroups: state.allGroups,
         allOrganisationsNames: state.allOrganisationsNames,
+        allGroupsNames: state.allGroupsNames,
     }
 }
 const mapDispatchToProps = (dispatch) => {

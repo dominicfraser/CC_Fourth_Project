@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { isLoggedIn, authIsLoading, loginUName, loginPassword, createEmail, createPName, createPassword, createSelectedPrimaryOrg, createSelectedPrimaryGroup, allOrganisations, allGroups, allOrganisationsNames, drawerIsActive } from './splitReducers'
+import { isLoggedIn, authIsLoading, loginUName, loginPassword, createEmail, createPName, createPassword, createSelectedPrimaryOrg, createSelectedPrimaryGroup, allOrganisations, allGroups, allOrganisationsNames, allGroupsNames, drawerIsActive } from './splitReducers'
 
 export default combineReducers({
     isLoggedIn,
@@ -14,5 +14,6 @@ export default combineReducers({
     allOrganisations,
     allGroups,
     allOrganisationsNames,
+    allGroupsNames,
     drawerIsActive
 })
