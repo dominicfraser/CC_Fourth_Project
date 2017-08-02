@@ -21,7 +21,7 @@ class PlayerModel {
   win_ratio_ratio(){
     let ratio = null
     if(this.losses > 0){
-      ratio = `${this.wins/this.losses}:1`
+      ratio = `${Math.round(this.wins/this.losses * 100)/100}:1`
     } else {
       ratio = `${this.wins}:${this.losses}`
     }
