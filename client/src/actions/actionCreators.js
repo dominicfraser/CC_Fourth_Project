@@ -29,38 +29,6 @@ export function loginPassword(password) {
     }
 }
 
-//CREATE USER
-export function createEmail(email) {
-    return {
-        type: 'CREATE_EMAIL',
-        createEmail: email
-    }
-}
-export function createPName(p_name) {
-    return {
-        type: 'CREATE_PNAME',
-        createPName: p_name
-    }
-}
-export function createPassword(password) {
-    return {
-        type: 'CREATE_PASSWORD',
-        createPassword: password
-    }
-}
-export function createSelectedPrimaryOrg(primary_org) {
-    return {
-        type: 'CREATE_SELECTED_PRIMARY_ORG',
-        createSelectedPrimaryOrg: primary_org
-    }
-}
-export function createSelectedPrimaryGroup(primary_group) {
-    return {
-        type: 'CREATE_SELECTED_PRIMARY_GROUP',
-        createSelectedPrimaryGroup: primary_group
-    }
-}
-
 //ALL
 export function allOrganisations(organisations) {
     return {
@@ -108,7 +76,6 @@ export function findAllOrgs(){
     return (dispatch) => {
         apiCommunicatorHelper.allOrganisations((organisations) => {
             dispatch(allOrganisations(organisations))
-            dispatch(createSelectedPrimaryOrg(organisations[1]))
             let o_names = []
             organisations.forEach((organisation) => {
                 o_names.push(organisation.o_name)
@@ -121,7 +88,6 @@ export function findAllGroups(){
     return (dispatch) => {
         apiCommunicatorHelper.allGroups((groups) => {
             dispatch(allGroups(groups))
-            dispatch(createSelectedPrimaryGroup(groups[0]))
             let g_names = []
             groups.forEach((group) => {
                 g_names.push(group.g_name)

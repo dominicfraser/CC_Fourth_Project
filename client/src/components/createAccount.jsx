@@ -5,12 +5,18 @@ import Autocomplete from 'react-toolbox/lib/autocomplete'
 import Button from 'react-toolbox/lib/button'
 
 import { connect } from 'react-redux'
-import { createEmail, createPName, createPassword, createSelectedPrimaryOrg, createSelectedPrimaryGroup, findAllOrgs, findAllGroups, allOrganisations, allGroups, allOrganisationsNames, allGroupsNames } from '../actions/actionCreators'
+import { findAllOrgs, findAllGroups, allOrganisations, allGroups, allOrganisationsNames, allGroupsNames } from '../actions/actionCreators'
 
 class CreateAccount extends React.Component {
   constructor(props){
     super(props)
-    this.state = { }
+    this.state = { 
+      p_name: "",
+      email: "",
+      password: "",
+      primary_org: "",
+      primary_group: ""
+    }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
     this.handleEmailChange = this.handleEmailChange.bind(this)
@@ -39,11 +45,11 @@ class CreateAccount extends React.Component {
 
     return (
       <form>
-        <Input type='text' label='Email' name='email' value={this.props.createEmail} onChange={this.handleEmailChange} required/>
+        <Input type='text' label='Email' name='email' value={this.state.email} onChange={this.handleEmailChange} required/>
 
-        <Input type='text' label='Username' name='p-name' value={this.props.createPNname} onChange={this.handlePNameChange} required/>
+        <Input type='text' label='Player Name' name='p-name' value={this.state.p_name} onChange={this.handlePNameChange} required/>
 
-        <Input type='text' label='Password' name='password' value={this.props.createPassword} onChange={this.handlePasswordChange} required/>
+        <Input type='text' label='Password' name='password' value={this.state.password} onChange={this.handlePasswordChange} required/>
 
         <Autocomplete
           direction="auto"
@@ -52,7 +58,7 @@ class CreateAccount extends React.Component {
           multiple={false}
           onChange={this.handlePrimaryOrgChange}
           source={orgNames}
-          value={this.props.createSelectedPrimaryOrg.o_name}
+          value={this.state.primary_org.o_name}
           showSuggestionsWhenValueIsSet={true}
           suggestionMatch="anywhere"
           required
@@ -65,7 +71,7 @@ class CreateAccount extends React.Component {
           multiple={false}
           onChange={this.handlePrimaryGroupChange}
           source={groupNames}
-          value={this.props.createSelectedPrimaryGroup.g_name}
+          value={this.state.primary_group.g_name}
           showSuggestionsWhenValueIsSet={true}
           suggestionMatch="anywhere"
           required
@@ -77,23 +83,18 @@ class CreateAccount extends React.Component {
   }
 
   componentWillUnmount(){
-    this.props.setCreateEmail("")
-    this.props.setCreatePName("")
-    this.props.setCreatePassword("")
-    this.props.setCreateSelectedPrimaryOrg("")
-    this.props.setCreateSelectedPrimaryGroup("")
   }
 
   handleEmailChange(value){
-    this.props.setCreateEmail(value)
+    this.setState({ email: value })
   }
 
   handlePNameChange(value){
-    this.props.setCreatePName(value)
+    this.setState({ p_name: value })
   }
 
   handlePasswordChange(value){
-    this.props.setCreatePassword(value)
+    this.setState({ password: value })
   }
 
   handlePrimaryOrgChange(value){
@@ -103,7 +104,7 @@ class CreateAccount extends React.Component {
         orgObject = organisation
       }
     })
-    this.props.setCreateSelectedPrimaryOrg(orgObject)
+    this.setState({ primary_org: orgObject })
   }
 
   handlePrimaryGroupChange(value){
@@ -113,31 +114,27 @@ class CreateAccount extends React.Component {
         groupObject = group
       }
     })
-    this.props.setCreateSelectedPrimaryGroup(groupObject)
+    this.setState({ primary_group: groupObject })
   }
 
   createAccountButton(){
-    this.apiCommunicatorHelper.createAccount((submittedDetails) =>{
-console.log('createAccount button callback return login', submittedDetails)
-      }, (err) => {
-console.log('err createAccountButton')
-      }, JSON.stringify({
-        email: this.props.createEmail,
-        p_name: this.props.createPName,
-        password: this.props.createPassword,
-        primary_org_id: this.props.createSelectedPrimaryOrg.id,
-        primary_group_id: this.props.createSelectedPrimaryGroup.id
-    }))
-  }
-
+   this.apiCommunicatorHelper.createAccount((submittedDetails) =>{
+   console.log('createAccount button callback return login', submittedDetails)
+         }, (err) => {
+   console.log('err createAccountButton')
+         }, JSON.stringify({
+           email: this.state.email,
+           rating: 0,
+           p_name: this.state.p_name,
+           password: this.state.password,
+           primary_org_id: this.state.primary_org.id,
+           primary_group_id: this.state.primary_group.id
+       }))
+     }
 }
+
 const mapStateToProps = (state) => {
     return {
-        createEmail: state.createEmail,
-        createPName: state.createPName,
-        createPassword: state.createPassword,
-        createSelectedPrimaryOrg: state.createSelectedPrimaryOrg,
-        createSelectedPrimaryGroup: state.createSelectedPrimaryGroup,
         allOrganisations: state.allOrganisations,
         allGroups: state.allGroups,
         allOrganisationsNames: state.allOrganisationsNames,
@@ -146,13 +143,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCreateEmail: (email) => dispatch(createEmail(email)),
-        setCreatePName: (p_name) => dispatch(createPName(p_name)),
-        setCreatePassword: (password) => dispatch(createPassword(password)),
-        setCreateSelectedPrimaryOrg: (primary_org) => dispatch(createSelectedPrimaryOrg(primary_org)),
-        setCreateSelectedPrimaryGroup: (primary_group) => dispatch(createSelectedPrimaryGroup(primary_group)),
         findAllOrgs: () => dispatch(findAllOrgs()),
-        findAllGroups: () => dispatch(findAllGroups())
+        findAllGroups: () => dispatch(findAllGroups()),
     }
 }
 

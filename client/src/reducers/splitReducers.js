@@ -34,51 +34,6 @@ export function loginPassword(state = "", action) {
     }
 }
 
-export function createEmail(state = "", action) {
-    switch (action.type) {
-        case 'CREATE_EMAIL':
-            return action.createEmail
-        default:
-            return state
-    }
-}
-
-export function createPName(state = "", action) {
-    switch (action.type) {
-        case 'CREATE_PNAME':
-            return action.createPName
-        default:
-            return state
-    }
-}
-
-export function createPassword(state = "", action) {
-    switch (action.type) {
-        case 'CREATE_PASSWORD':
-            return action.createPassword
-        default:
-            return state
-    }
-}
-
-export function createSelectedPrimaryOrg(state = "", action) {
-    switch (action.type) {
-        case 'CREATE_SELECTED_PRIMARY_ORG':
-            return action.createSelectedPrimaryOrg
-        default:
-            return state
-    }
-}
-
-export function createSelectedPrimaryGroup(state = "", action) {
-    switch (action.type) {
-        case 'CREATE_SELECTED_PRIMARY_GROUP':
-            return action.createSelectedPrimaryGroup
-        default:
-            return state
-    }
-}
-
 export function allOrganisations(state = "", action) {
     switch (action.type) {
         case 'All_ORGANISATIONS':
