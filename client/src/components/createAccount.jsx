@@ -17,7 +17,8 @@ class CreateAccount extends React.Component {
       primary_org: "",
       primary_group: "",
       allEmails: "",
-      allPNames: ""
+      allPNames: "",
+      emailError: ""
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
@@ -28,6 +29,7 @@ class CreateAccount extends React.Component {
     this.handlePrimaryGroupChange = this.handlePrimaryGroupChange.bind(this)
     this.createAccountButton = this.createAccountButton.bind(this)
     this.findAllPlayerDetails = this.findAllPlayerDetails.bind(this)
+    this.checkEmails = this.checkEmails.bind(this)
   }
 
   componentDidMount(){
@@ -49,7 +51,7 @@ class CreateAccount extends React.Component {
 
     return (
       <form>
-        <Input type='text' label='Email' name='email' value={this.state.email} onChange={this.handleEmailChange} required/>
+        <Input type='text' label='Email' name='email' value={this.state.email} error={this.state.emailError} onChange={this.handleEmailChange} onBlur={this.checkEmails} required/>
 
         <Input type='text' label='Player Name' name='p-name' value={this.state.p_name} onChange={this.handlePNameChange} required maxLength={8}/>
 
@@ -91,6 +93,8 @@ class CreateAccount extends React.Component {
 
   handleEmailChange(value){
     this.setState({ email: value })
+    this.setState({ emailError: "" })
+
   }
 
   handlePNameChange(value){
@@ -148,6 +152,17 @@ class CreateAccount extends React.Component {
       this.setState({allPNames: pNames})
      })
    }
+
+   checkEmails(){
+    for(let i = 0; i < this.state.allEmails.length; i++){
+      if(this.state.email == this.state.allEmails[i]){
+        return this.setState({ emailError: "Email already in use"})
+      } else {
+        this.setState({ emailError: "" })
+      }
+    }
+   }
+
 }
 
 const mapStateToProps = (state) => {
