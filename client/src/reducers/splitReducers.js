@@ -70,6 +70,15 @@ export function allGroupsNames(state = "", action) {
     }
 }
 
+// export function playersDetails(state = "", action) {
+//     switch (action.type) {
+//         case 'ALL_EMAILS' :
+//             return action.allEmails
+//         default:
+//             return state
+//     }
+// }
+
 export function drawerIsActive(state = false, action) {
     switch (action.type) {
         case 'DRAWER_IS_ACTIVE':

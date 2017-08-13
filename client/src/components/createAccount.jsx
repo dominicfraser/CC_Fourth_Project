@@ -15,7 +15,9 @@ class CreateAccount extends React.Component {
       email: "",
       password: "",
       primary_org: "",
-      primary_group: ""
+      primary_group: "",
+      allEmails: "",
+      allPNames: ""
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
@@ -25,11 +27,13 @@ class CreateAccount extends React.Component {
     this.handlePrimaryOrgChange = this.handlePrimaryOrgChange.bind(this)
     this.handlePrimaryGroupChange = this.handlePrimaryGroupChange.bind(this)
     this.createAccountButton = this.createAccountButton.bind(this)
+    this.findAllPlayerDetails = this.findAllPlayerDetails.bind(this)
   }
 
   componentDidMount(){
     this.props.findAllOrgs()
     this.props.findAllGroups()
+    this.findAllPlayerDetails()
   }
 
   render(){
@@ -130,7 +134,20 @@ class CreateAccount extends React.Component {
            primary_org_id: this.state.primary_org.id,
            primary_group_id: this.state.primary_group.id
        }))
-     }
+   }
+
+   findAllPlayerDetails(){
+     this.apiCommunicatorHelper.allPlayers((players) => {
+      let emails = []
+      let pNames = []
+      players.forEach((player) => {
+          emails.push(player.email)
+          pNames.push(player.p_name)
+      })
+      this.setState({allEmails: emails})
+      this.setState({allPNames: pNames})
+     })
+   }
 }
 
 const mapStateToProps = (state) => {

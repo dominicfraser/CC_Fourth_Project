@@ -54,6 +54,12 @@ export function allGroupsNames(g_names) {
         allGroupsNames: g_names
     }
 }
+// export function allEmails(emails) {
+//     return {
+//         type: 'ALL_EMAILS',
+//         allEmails: emails
+//     }
+// }
 
 export function checkLoggedIn() {
     return (dispatch) => {
@@ -96,6 +102,17 @@ export function findAllGroups(){
         })
     }
 }
+// export function findAllPlayerDetails(){
+//     return (dispatch) => {
+//         apiCommunicatorHelper.allPlayers((players) => {
+//             let emails = []
+//             players.forEach((player) => {
+//                 emails.push(player.email)
+//             })
+//             dispatch(allEmails(emails))
+//         })
+//     }
+// }
 
 export function checkDrawerIsActive(bool) {
     return {
