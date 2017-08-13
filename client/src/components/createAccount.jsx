@@ -47,7 +47,7 @@ class CreateAccount extends React.Component {
       <form>
         <Input type='text' label='Email' name='email' value={this.state.email} onChange={this.handleEmailChange} required/>
 
-        <Input type='text' label='Player Name' name='p-name' value={this.state.p_name} onChange={this.handlePNameChange} required/>
+        <Input type='text' label='Player Name' name='p-name' value={this.state.p_name} onChange={this.handlePNameChange} required maxLength={8}/>
 
         <Input type='text' label='Password' name='password' value={this.state.password} onChange={this.handlePasswordChange} required/>
 
