@@ -86,7 +86,7 @@ console.log('render in addGame')
         />
 
         <div id='add-game-button'>
-          <Button label='Add Game' href='/#/' onClick={this.submitGameButton} raised primary />
+          <Button label='Add Game' onClick={this.submitGameButton} raised primary />
         </div>
       </form>
     )
@@ -96,6 +96,7 @@ console.log('render in addGame')
   submitGameButton(){
     this.apiCommunicatorHelper.addGame((submittedGame) => {
 console.log('callback return', submittedGame)
+    this.props.history.push('/')
     }, (err) => {
 console.log('err submitGameButton')
     }, JSON.stringify({ 
@@ -158,7 +159,7 @@ console.log('err submitGameButton')
   }
 
   findAllPlayers(){
-    this.apiCommunicatorHelper.allPlayersWithStats((players) => {
+    this.apiCommunicatorHelper.allPlayers((players) => {
       this.setState({ players: players })
     })
   }

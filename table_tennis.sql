@@ -7,14 +7,6 @@ DROP TABLE IF EXISTS players CASCADE;
 DROP TABLE IF EXISTS groups CASCADE;
 DROP TABLE IF EXISTS organisations;
 DROP TABLE IF EXISTS locations;
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users(
-  id SERIAL2 PRIMARY KEY,
-  email VARCHAR(255),
-  p_name VARCHAR(255),
-  password VARCHAR(255)
-);
 
 CREATE TABLE locations(
   id SERIAL2 PRIMARY KEY,
@@ -35,6 +27,8 @@ CREATE TABLE groups(
 CREATE TABLE players(
   id SERIAL2 PRIMARY KEY,
   p_name VARCHAR(255),
+  email VARCHAR(255),
+  password VARCHAR(255),
   rating INT4,
   picture VARCHAR(255),
   primary_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,

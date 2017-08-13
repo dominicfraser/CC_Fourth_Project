@@ -34,28 +34,37 @@ export function loginPassword(state = "", action) {
     }
 }
 
-export function createEmail(state = "", action) {
+export function allOrganisations(state = "", action) {
     switch (action.type) {
-        case 'CREATE_EMAIL':
-            return action.createEmail
+        case 'All_ORGANISATIONS':
+            return action.allOrganisations
         default:
             return state
     }
 }
 
-export function createPName(state = "", action) {
+export function allOrganisationsNames(state = "", action) {
     switch (action.type) {
-        case 'CREATE_PNAME':
-            return action.createPName
+        case 'All_ORGANISATIONS_NAMES':
+            return action.allOrganisationsNames
         default:
             return state
     }
 }
 
-export function createPassword(state = "", action) {
+export function allGroups(state = "", action) {
     switch (action.type) {
-        case 'CREATE_PASSWORD':
-            return action.createPassword
+        case 'All_GROUPS':
+            return action.allGroups
+        default:
+            return state
+    }
+}
+
+export function allGroupsNames(state = "", action) {
+    switch (action.type) {
+        case 'All_GROUPS_NAMES':
+            return action.allGroupsNames
         default:
             return state
     }

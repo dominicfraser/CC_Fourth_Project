@@ -8,7 +8,6 @@ export function authIsLoading(bool) {
         authIsLoading: bool
     }
 }
-
 export function isLoggedIn(bool) {
     return {
         type: 'USER_IS_AUTHORISED',
@@ -16,13 +15,13 @@ export function isLoggedIn(bool) {
     }
 }
 
+//LOGIN USER
 export function loginUName(u_name) {
     return {
         type: 'LOGIN_U_NAME',
         loginUName: u_name
     }
 }
-
 export function loginPassword(password) {
     return {
         type: 'LOGIN_PASSWORD',
@@ -30,24 +29,29 @@ export function loginPassword(password) {
     }
 }
 
-export function createEmail(email) {
+//ALL
+export function allOrganisations(organisations) {
     return {
-        type: 'CREATE_EMAIL',
-        createEmail: email
+        type: 'All_ORGANISATIONS',
+        allOrganisations: organisations
     }
 }
-
-export function createPName(p_name) {
+export function allOrganisationsNames(o_names) {
     return {
-        type: 'CREATE_PNAME',
-        createPName: p_name
+        type: 'All_ORGANISATIONS_NAMES',
+        allOrganisationsNames: o_names
     }
 }
-
-export function createPassword(password) {
+export function allGroups(groups) {
     return {
-        type: 'CREATE_PASSWORD',
-        createPassword: password
+        type: 'All_GROUPS',
+        allGroups: groups
+    }
+}
+export function allGroupsNames(g_names) {
+    return {
+        type: 'All_GROUPS_NAMES',
+        allGroupsNames: g_names
     }
 }
 
@@ -68,10 +72,34 @@ console.log('in checkLoggedIn saying user is not logged in')
     }
 }
 
+export function findAllOrgs(){
+    return (dispatch) => {
+        apiCommunicatorHelper.allOrganisations((organisations) => {
+            dispatch(allOrganisations(organisations))
+            let o_names = []
+            organisations.forEach((organisation) => {
+                o_names.push(organisation.o_name)
+            })
+            dispatch(allOrganisationsNames(o_names))
+        })
+    }
+}
+export function findAllGroups(){
+    return (dispatch) => {
+        apiCommunicatorHelper.allGroups((groups) => {
+            dispatch(allGroups(groups))
+            let g_names = []
+            groups.forEach((group) => {
+                g_names.push(group.g_name)
+            })
+            dispatch(allGroupsNames(g_names))
+        })
+    }
+}
+
 export function checkDrawerIsActive(bool) {
     return {
         type: 'DRAWER_IS_ACTIVE',
         drawerIsActive: bool
     }
 }
-
