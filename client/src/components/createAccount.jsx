@@ -18,7 +18,8 @@ class CreateAccount extends React.Component {
       primary_group: "",
       allEmails: "",
       allPNames: "",
-      emailError: ""
+      emailError: "",
+      pNameError: ""
     }
     this.apiCommunicatorHelper = new ApiCommunicatorHelper()
 
@@ -30,6 +31,7 @@ class CreateAccount extends React.Component {
     this.createAccountButton = this.createAccountButton.bind(this)
     this.findAllPlayerDetails = this.findAllPlayerDetails.bind(this)
     this.checkEmails = this.checkEmails.bind(this)
+    this.checkPNames = this.checkPNames.bind(this)
   }
 
   componentDidMount(){
@@ -53,7 +55,7 @@ class CreateAccount extends React.Component {
       <form>
         <Input type='text' label='Email' name='email' value={this.state.email} error={this.state.emailError} onChange={this.handleEmailChange} onBlur={this.checkEmails} required/>
 
-        <Input type='text' label='Player Name' name='p-name' value={this.state.p_name} onChange={this.handlePNameChange} required maxLength={8}/>
+        <Input type='text' label='Player Name' name='p-name' value={this.state.p_name} error={this.state.pNameError} onChange={this.handlePNameChange} onBlur={this.checkPNames} required maxLength={8}/>
 
         <Input type='text' label='Password' name='password' value={this.state.password} onChange={this.handlePasswordChange} required/>
 
@@ -99,6 +101,7 @@ class CreateAccount extends React.Component {
 
   handlePNameChange(value){
     this.setState({ p_name: value })
+    this.setState({ pNameError: "" })
   }
 
   handlePasswordChange(value){
@@ -159,6 +162,16 @@ class CreateAccount extends React.Component {
         return this.setState({ emailError: "Email already in use"})
       } else {
         this.setState({ emailError: "" })
+      }
+    }
+   }
+
+   checkPNames(){
+    for(let i = 0; i < this.state.allPNames.length; i++){
+      if(this.state.p_name == this.state.allPNames[i]){
+        return this.setState({ pNameError: "Name already in use"})
+      } else {
+        this.setState({ pNameError: ""})
       }
     }
    }
